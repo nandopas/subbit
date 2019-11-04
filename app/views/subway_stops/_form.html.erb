@@ -1,0 +1,32 @@
+
+<%= form_with model: @subway_stop, local: true do |form| %>
+ 
+  <% if @subway_stop.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@subway_stop.errors.count, "error") %> prohibited
+        this subway_stop from being saved:
+      </h2>
+      <ul>
+        <% @subway_stop.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= form.label :line %><br>
+    <%= form.text_field :line %>
+  </p>
+ 
+  <p>
+    <%= form.label :stop %><br>
+    <%= form.text_area :stop %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>

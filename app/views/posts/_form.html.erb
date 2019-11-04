@@ -1,0 +1,19 @@
+<%= form_with(model: [ @subway_stop, @subway_stop.posts.build ], local: true) do |form| %>
+
+  <p>
+    <%= form.label :user %><br>
+    <%= form.text_field :user %>
+  </p>
+  <p>
+    <%= form.label :topic %><br>
+    <%= form.text_field :topic %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

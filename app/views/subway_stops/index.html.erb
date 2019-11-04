@@ -1,0 +1,24 @@
+<h1>Welcome to Subbit!</h1>
+<h2>Showing Subway Stops</h2>
+
+<%= link_to 'Create new stop', new_subway_stop_path %> 
+
+<table>
+  <tr>
+    <th>Line</th>
+    <th>Stop</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @subway_stops.each do |subway_stop| %>
+    <tr>
+      <td><%= subway_stop.line %></td>
+      <td><%= subway_stop.stop %></td>
+      <td><%= link_to 'Show', subway_stop_path(subway_stop) %></td>
+      <td><%= link_to 'Edit', edit_subway_stop_path(subway_stop) %></td>
+      <td><%= link_to 'Destroy', subway_stop_path(subway_stop),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

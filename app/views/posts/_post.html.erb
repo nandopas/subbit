@@ -1,0 +1,22 @@
+<%-# link_to 'this post', subway_stop_posts_path -%>
+
+<p>
+  <strong>User:</strong>
+  <%= post.user %>
+</p>
+ 
+<p>
+  <strong>Topic:</strong>
+  <%= post.topic %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= post.body %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Post', [post.subway_stop, post],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>
