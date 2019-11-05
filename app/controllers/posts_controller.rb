@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.all
+    @subway_stop = SubwayStop.find(params[:subway_stop_id])
+    @posts = @subway_stop.posts
   end
   
   def show
     @subway_stop = SubwayStop.find(params[:subway_stop_id])
-    @post = @subway_stop.posts.find(params[:id})
+    @post = @subway_stop.posts.find(params[:id])
+  end
 
   def create
     @subway_stop = SubwayStop.find(params[:subway_stop_id])
