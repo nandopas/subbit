@@ -1,4 +1,4 @@
-<h1>Do something pls</h1>
+<h1>Showing Post (Post#Show)</h1>
 
 <p>
   <strong>Line:</strong>
@@ -10,8 +10,19 @@
 
 
 <h3>Showing the Post</h3>
-<p> fix this line </p>
+<p>
+  <strong>User:</strong>
+  <%= @post.user %>
+</p>
 
-#change this so it shows only the specific post
+<p>
+  <strong>Topic:</strong>
+  <%= @post.topic %>
+</p>
 
-<%= link_to 'Back', subway_stops_path %>
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+<%= link_to 'Back to ' + @subway_stop.stop, subway_stop_path(@subway_stop) %>

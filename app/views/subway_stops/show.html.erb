@@ -1,12 +1,12 @@
 <h1> Subbit! </h1>
-
-<p>
-  <strong>Line:</strong>
-  <%= @subway_stop.line %> ---
- 
-  <strong>Stop:</strong>
+<h2> 
   <%= @subway_stop.stop %>
-</p>
+</h2>
+
+<h3>
+  Line:
+  <%= @subway_stop.line %> 
+</h3>
 
 <h3>Posts</h3>
 <%= render @subway_stop.posts %>
@@ -14,6 +14,6 @@
 <h2>Add a post:</h2>
 <%= render 'posts/form' %>
 
-<%= link_to 'Back', subway_stops_path %>
+<%= link_to 'Home', subway_stops_path %>
 <%-# link_to 'test', 'posts/post' -%>
 
