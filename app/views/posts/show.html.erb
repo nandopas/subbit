@@ -1,5 +1,9 @@
-<h1>Showing Post (Post#Show)</h1>
+<h1>
+<%= link_to 'Subbit!', controller: 'home' %>
+</h1>
 
+<%= render 'home/login' %>
+<h3>Showing the Post</h3>
 <p>
   <strong>Line:</strong>
   <%= @subway_stop.line %> ---
@@ -9,7 +13,6 @@
 </p>
 
 
-<h3>Showing the Post</h3>
 <p>
   <strong>User:</strong>
   <%= @post.user %>

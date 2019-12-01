@@ -1,4 +1,8 @@
-<h1> Subbit! </h1>
+<h1>
+<%= link_to 'Subbit!', controller: 'home' %>
+</h1>
+
+<%= render 'home/login' %>
 <h2> 
   <%= @subway_stop.stop %>
 </h2>
@@ -14,5 +18,5 @@
 <h2>Add a post:</h2>
 <%= render 'posts/form' %>
 
-<%= link_to 'Home', subway_stops_path %>
+<%= link_to 'All Stops', subway_stops_path %>
 
