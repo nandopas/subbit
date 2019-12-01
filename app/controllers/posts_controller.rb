@@ -11,9 +11,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    @subway_stop = SubwayStop.find(params[:subway_stop_id])
-    @post = @subway_stop.posts.create(post_params)
-    redirect_to subway_stop_path(@subway_stop)
+    if current_user
+      @subway_stop = SubwayStop.find(params[:subway_stop_id])
+      @post = @subway_stop.posts.create(post_params)
+      redirect_to subway_stop_path(@subway_stop)
+    end
   end
 
   def destroy
@@ -25,6 +27,6 @@ class PostsController < ApplicationController
  
   private
     def post_params
-      params.require(:post).permit(:user, :topic,  :body)
+      params.require(:post).permit(:user, :topic,  :body).merge(user: current_user.username)
     end
 end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
 
   resources :subway_stops do
-    resources :posts#, shallow: true #do
+    resources :posts #do
 #      resources :comments
 #    end
   end
