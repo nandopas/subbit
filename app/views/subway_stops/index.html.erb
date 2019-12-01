@@ -1,9 +1,6 @@
 <div class="container text-center">
 
-<% if current_user && current_user.admin? %>
-  <p> hello admin! </p>
-  <%= link_to 'Admin Tools', users_path %>
-<% end %>
+<%= render 'users/tools' %>
 
 <h1>Welcome to Subbit!</h1>
 <h2>Showing Subway Stops</h2>

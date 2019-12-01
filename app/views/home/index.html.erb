@@ -1,7 +1,4 @@
-<% if current_user && current_user.admin? %>
-  <p> hello admin! </p>
-  <%= link_to 'Admin Tools', users_path %>
-<% end %>
+<%= render 'users/tools' %>
 
 <h1>Subbit</h1>
 <h2>Welcome to Subbit!</h2>
