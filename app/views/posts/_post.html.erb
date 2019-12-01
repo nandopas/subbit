@@ -14,8 +14,10 @@
 </p>
 
 <p>
-  <%= link_to 'Show this post', [post.subway_stop, post] %> |
+  <%= link_to 'Show this post', [post.subway_stop, post] %> 
+  <% if current_user && current_user.admin? %>|
   <%= link_to 'Destroy Post', [post.subway_stop, post],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
+  <% end %>
 </p>

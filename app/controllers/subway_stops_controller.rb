@@ -1,4 +1,5 @@
 class SubwayStopsController < ApplicationController
+  
   def index
     @subway_stops = SubwayStop.all
   end
@@ -8,11 +9,27 @@ class SubwayStopsController < ApplicationController
   end
 
   def new
-    @subway_stop = SubwayStop.new
+    if current_user
+      @subway_stop = SubwayStop.new
+    else
+      session[:return_to] ||= request.referer
+      redirect_to session.delete(:return_to)
+    end
   end
   
   def edit
     @subway_stop = SubwayStop.find(params[:id])
+    if current_user
+      @user = User.find(params[:user_id])
+      if @user.admin == false
+        session[:return_to] ||= request.referer
+        redirect_to session.delete(:return_to)
+      else
+        @subway_stop = SubwayStop.find(params[:id])
+      end
+    else
+      redirect_to @subway_stop
+    end  
   end
  
   def create 
