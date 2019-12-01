@@ -1,4 +1,9 @@
-<h1>Subbit!</h1>
+<h1>
+<%= link_to 'Subbit!', controller: 'home' %>
+</h1>
+
+<%= render 'home/login' %>
+
 <h2>All Posts Existing</h2>
 
 
@@ -14,7 +19,7 @@
     <tr>
       <td><%= post.topic %></td>
       <td><%= post.user %></td>
-      <td><%= link_to 'Show this post', subway_stop_posts_path(post) %></td>
+      <td><%= link_to 'Show this post', [post.subway_stop, post] %></td>
     </tr>
   <% end %>
 </table>
