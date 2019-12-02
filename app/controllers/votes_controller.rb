@@ -5,7 +5,7 @@ class VotesController < ApplicationController
   	if @vote.save
   	  redirect_to @vote.post
   	else
-  	  flash.now[:alert] = "Could not vote (expand on this and why"
+  	  flash.now[:alert] = "Could not vote (expand on this and why)"
   	end
   end
 
