@@ -15,6 +15,8 @@ class PostsController < ApplicationController
       @subway_stop = SubwayStop.find(params[:subway_stop_id])
       @post = @subway_stop.posts.create(post_params)
       redirect_to subway_stop_path(@subway_stop)
+    else
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -51,7 +53,7 @@ class PostsController < ApplicationController
  
   private
     def post_params
-      params.require(:post).permit(:user, :topic,  :body).merge(user: current_user.username, user_id: current_user.id)
+      params.require(:post).permit(:user, :topic, :body, :tags).merge(user: current_user.username, user_id: current_user.id)
     end
 end
 

@@ -7,6 +7,8 @@
 </h1>
 
 <%= render 'home/login' %>
+
+<div>
 <h2> 
   <%= @subway_stop.stop %>
 </h2>
@@ -16,8 +18,10 @@
   <%= @subway_stop.line %> 
 </h3>
 
+
 <h3>Posts</h3>
 <%= render @subway_stop.posts %>
+
 
 <% if current_user %>
   <h2>Add a post:</h2>

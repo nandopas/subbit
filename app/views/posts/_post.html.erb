@@ -1,9 +1,9 @@
+<div class="posts">
 <p>
   <strong>User:</strong>
   <%= post.user %>
 </p>
 
- 
 <p>
   <strong>Topic:</strong>
   <%= post.topic %>
@@ -14,6 +14,13 @@
   <%= post.body %>
 </p>
 
+<% if post.tags != nil %>
+<p>
+  <strong>Tags:</strong>
+  <%= post.tags %>
+</p>
+<% end %>
+
 <p>
   <%= link_to 'Show this post', [post.subway_stop, post] %> 
   <% if current_user && current_user.admin? %>|
@@ -21,7 +28,9 @@
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
   <% end %>
-
+   
+  <br>
+   
   <% if current_user %>
     <%= link_to like_post_path(post), method: :put do %>
       Upvote
@@ -42,6 +51,8 @@
     Downvotes
       <%= post.get_downvotes.size %>
   <% end %>
+
+</div>
 
 
 
