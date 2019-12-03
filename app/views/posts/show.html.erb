@@ -33,5 +33,28 @@
   <%= @post.body %>
 </p>
 
+<% if current_user %>
+    <%= link_to like_post_path(@post), method: :put do %>
+      Upvote
+      <%= @post.get_upvotes.size %>
+    <% end %>
+  <% else %>
+    Upvotes
+      <%= @post.get_upvotes.size %>
+  <% end %>
+  
+  
+  <% if current_user %>
+    <%= link_to dislike_post_path(@post), method: :put do %>
+      Downvote
+      <%= @post.get_downvotes.size %>
+    <% end %>
+  <% else %>
+    Downvotes
+      <%= @post.get_downvotes.size %>
+  <% end %>
+  
+<br>
+
 <%= link_to 'Back to ' + @subway_stop.stop, subway_stop_path(@subway_stop) %>
 </div>

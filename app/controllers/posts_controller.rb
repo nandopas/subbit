@@ -19,15 +19,27 @@ class PostsController < ApplicationController
   end
 
   def upvote
-    @post = Post.find(params[:id])
-    @post.upvote_by current_user
-    redirect_to :back
+    if current_user
+      #@subway_stop = SubwayStop.find(params[:subway_stop_id])
+      @post = Post.find(params[:id])
+      @post.upvote_by current_user
+      redirect_back(fallback_location: root_path)
+      #redirect to the post itself
+      #redirect_to subway_stop_post_path(@post.subway_stop, @post)
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def downvote
-    @post = Post.find(params[:id])
-    @post.downvote_by current_user
-    redirect_to :back
+    if current_user
+      @post = Post.find(params[:id])
+      @post.downvote_by current_user
+      redirect_back(fallback_location: root_path)
+      #redirect_to subway_stops_path
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def destroy

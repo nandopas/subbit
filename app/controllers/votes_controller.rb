@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  
   def create
   	@vote - Vote.new(vote_params)
   	@vote.post = Post.find(params[:post_id])
