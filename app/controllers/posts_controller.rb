@@ -44,6 +44,13 @@ class PostsController < ApplicationController
     end
   end
 
+  
+  # def score
+  #   @post = Post.find(params[:id])
+  #   @post.score = @post.get_upvotes.size - @post.get_downvotes.size
+  # end
+  
+
   def destroy
     @subway_stop = SubwayStop.find(params[:subway_stop_id])
     @post = @subway_stop.posts.find(params[:id])

@@ -1,5 +1,6 @@
 class SubwayStopsController < ApplicationController
-  
+  before_action :not_admin, only: [:edit, :update, :destroy]
+
   def index
     @subway_stops = SubwayStop.all
   end
@@ -19,17 +20,8 @@ class SubwayStopsController < ApplicationController
   
   def edit
     @subway_stop = SubwayStop.find(params[:id])
-    if current_user
-      @user = User.find(params[:user_id])
-      if @user.admin == false
-        session[:return_to] ||= request.referer
-        redirect_to session.delete(:return_to)
-      else
-        @subway_stop = SubwayStop.find(params[:id])
-      end
-    else
-      redirect_to @subway_stop
-    end  
+    
+
   end
  
   def create 

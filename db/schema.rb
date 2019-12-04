@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_183548) do
+ActiveRecord::Schema.define(version: 2019_12_03_194013) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_183548) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.string "tags"
+    t.integer "score"
     t.index ["subway_stop_id"], name: "index_posts_on_subway_stop_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
