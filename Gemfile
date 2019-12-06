@@ -17,6 +17,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Use Puma as the app server
@@ -35,7 +36,6 @@ gem 'jbuilder', '~> 2.7'
  gem 'bcrypt', '~> 3.1.7'
 
 gem 'acts_as_votable'
-gem 'rails_12factor', group: :production
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
