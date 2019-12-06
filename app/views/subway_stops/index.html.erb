@@ -18,16 +18,12 @@
 
   <% @subway_stops.each do |subway_stop| %>
     <tr>
-      <td><%= link_to subway_stop.line, subway_stop_path(subway_stop) %></td>
-      <td><%= link_to subway_stop.stop, subway_stop_path(subway_stop) %></td>
-      <% if current_user && current_user.admin? %>
-        <td><%= link_to 'Show', subway_stop_path(subway_stop) %></td>
+        <td><%= subway_stop.line %></td>
+        <td><%= subway_stop.stop %></td>
+        <td><%= link_to 'Show', subway_stop %></td>
         <td><%= link_to 'Edit', edit_subway_stop_path(subway_stop) %></td>
-        <td><%= link_to 'Destroy', subway_stop_path(subway_stop),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tr>
+        <td><%= link_to 'Destroy', subway_stop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
   <% end %>
 </table>
 
