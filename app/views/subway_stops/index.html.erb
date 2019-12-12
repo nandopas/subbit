@@ -21,8 +21,10 @@
         <td><%= subway_stop.line %></td>
         <td><%= subway_stop.stop %></td>
         <td><%= link_to 'Show', subway_stop %></td>
-        <td><%= link_to 'Edit', edit_subway_stop_path(subway_stop) %></td>
-        <td><%= link_to 'Destroy', subway_stop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user && current_user.admin? %>
+          <td><%= link_to 'Edit', edit_subway_stop_path(subway_stop) %></td>
+          <td><%= link_to 'Destroy', subway_stop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
   <% end %>
 </table>
