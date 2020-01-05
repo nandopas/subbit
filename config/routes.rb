@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  resources :admins
+  #resources :admins
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   #resources :votes
