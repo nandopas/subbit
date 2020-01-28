@@ -1,24 +1,25 @@
-# README
+# Subbit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+to run locally, run server on port 4000
 
-Things you may want to cover:
+* Database: sqlite3
 
-* Ruby version
+* run rails db:migrate to create database locally
 
-* System dependencies
+## Next Steps
 
-* Configuration
+* Migrate database to postgresql to allow deployment on heroku
 
-* Database creation
+* show posts in order of most votes
 
-* Database initialization
+* connect to a location API to include location at stops
 
-* How to run the test suite
+* Also to provide location to users
 
-* Services (job queues, cache servers, search engines, etc.)
+* Comments on posts
 
-* Deployment instructions
+* Messaging between users
 
-* ...
+* Sort posts by tags
+
+* send a user sign up email
