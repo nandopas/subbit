@@ -1,33 +1,59 @@
-<div class="container text-center">
+
 	
 <%= render 'users/tools' %>
 
-<h1>
-<%= link_to 'Subbit!', controller: 'home' %>
-</h1>
+<div class="container">
+	<div id="map-canvas" class="jumbotron text-center">
+		
+	</div>
 
-<%= render 'home/login' %>
+	<div id="overlay" class="text-center">
+	<h1>
+		<%= link_to 'Subbit!', controller: 'home' %>
+		</h1>
 
-<div>
-<h2> 
-  <%= @subway_stop.stop %>
-</h2>
+		<%= render 'home/login' %>
 
-<h3>
-  Line:
-  <%= @subway_stop.line %> 
-</h3>
+		<div>
+			<h2> 
+			  <%= @subway_stop.stop %>
+			</h2>
 
-
-<h3>Posts</h3>
-<%= render @subway_stop.posts %>
-
-
-<% if current_user %>
-  <h2>Add a post:</h2>
-  <%= render 'posts/form' %> 
-<% end %>
-
-<%= link_to 'All Stops', subway_stops_path %>
+			<h3>
+			  Line:
+			  <%= @subway_stop.line %> 
+			</h3>
+		</div>
+	</div>
 </div>
 
+<div class="container text-center">
+	<h3>Posts</h3>
+	<%= render @subway_stop.posts %>
+
+
+	<% if current_user %>
+	  <h2>Add a post:</h2>
+	  <%= render 'posts/form' %> 
+	<% end %>
+
+	<%= link_to 'All Stops', subway_stops_path %>
+</div>
+
+<script>
+//https://developers.google.com/maps/documentation/javascript/adding-a-google-map
+
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: 40.808262, lng: -73.963891};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map-canvas'), {zoom: 17, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+</script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAe-V-ldBqH5_-dAobZW3DDKG3xI0VvmY&callback=initMap">
+    </script>
