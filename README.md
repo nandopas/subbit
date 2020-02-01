@@ -1,4 +1,5 @@
 # Subbit
+## Hosted as well at http://shielded-earth-79259.herokuapp.com/
 
 to run locally, run server on port 4000
 
@@ -8,7 +9,7 @@ to run locally, run server on port 4000
 
 ## Next Steps
 
-* Migrate database to postgresql to allow deployment on heroku
+* Migrate database to postgresql to allow deployment on heroku - done (kind of)
 
 * show posts in order of most votes
 
@@ -22,4 +23,6 @@ to run locally, run server on port 4000
 
 * Sort posts by tags
 
-* send a user sign up email
+* send a user sign up email (done)
+
+* search for a post
