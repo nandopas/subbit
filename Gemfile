@@ -20,6 +20,9 @@ group :production do
   gem 'rails_12factor'
 end
 
+#figaro for safely storing env variables
+gem 'figaro'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
