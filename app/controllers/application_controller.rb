@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_admin
-    if (current_user.admin?)
+    if !(current_user.admin?)
       session[:return_to] ||= request.referer
       redirect_to session.delete(:return_to)
     end

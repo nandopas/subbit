@@ -18,6 +18,9 @@
   <%= @user.created_at %>
 </p>
 
+<h2> <%= @user.username + "'s" %> posts </h2>
+<%= render @user.posts %>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Home', root_path %> |
 <%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure? Account is not recoverable'} %>

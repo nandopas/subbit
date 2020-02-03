@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_194013) do
+ActiveRecord::Schema.define(version: 2020_02_03_225604) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2019_12_03_194013) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "user"
     t.string "topic"
     t.text "body"
     t.integer "subway_stop_id", null: false
@@ -32,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_194013) do
     t.integer "user_id"
     t.string "tags"
     t.integer "score"
+    t.string "username"
     t.index ["subway_stop_id"], name: "index_posts_on_subway_stop_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end

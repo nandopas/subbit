@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   get 'map/index'
   #resources :admins
-  resources :users
+  resources :users do
+    resources :posts
+  end
   resources :sessions, only: [:new, :create, :destroy]
   #resources :votes
 
@@ -23,8 +25,8 @@ Rails.application.routes.draw do
 
 
   root 'home#index'
-  get '/posts', to: 'posts#index' 
-  get '/subway_stops/:subway_stop_id/posts', to: 'posts#show' 
+  #get 'users/:user_id/posts', to: 'posts#index' 
+  #get '/subway_stops/:subway_stop_id/posts', to: 'posts#show' 
 
   #signing in
   get 'signup', to: 'users#new', as: 'signup'
