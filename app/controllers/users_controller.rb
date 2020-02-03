@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:update, :destroy]
   before_action :herd_user, except: [:new, :create]
+  before_action :not_admin, only: [:index]
   # GET /users
   # GET /users.json
   def index
@@ -24,6 +25,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if current_user == User.find(params[:id])
+      @user = User.find(params[:id])
+    else
+      redirect_back fallback_location: root_path, alert: "Pls dont mess with the urls"
+    end
   end
 
   # POST /users
