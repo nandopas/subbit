@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
   before_action :herd_user, except: [:new, :create]
   # GET /users
   # GET /users.json
@@ -10,6 +10,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if current_user == User.find(params[:id])
+      @user = User.find(params[:id])
+    else
+      redirect_back fallback_location: root_path, alert: "Pls dont mess with the urls"
+    end
   end
 
   # GET /users/new

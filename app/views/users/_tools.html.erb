@@ -3,4 +3,9 @@
   <p> hello admin! </p>
   <%= link_to 'Admin Tools', users_path %>
 
+<% elsif current_user %>
+
+	<%= link_to current_user.username, user_path(current_user) %>
+	<p id="alert"><%= alert %></p>
+	
 <% end %>

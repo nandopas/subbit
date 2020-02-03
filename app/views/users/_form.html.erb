@@ -31,10 +31,12 @@
     <%= form.password_field :password_confirmation %>
   </div>
 
+  <% if current_user && current_user.admin? %>
   <div class="field">
     <%= form.label :admin %>
     <%= form.check_box :admin %>
   </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

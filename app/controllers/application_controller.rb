@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
   
   def herd_user
-  	if !(current_user && current_user.admin?)
+  	if !(current_user)
   	  redirect_to controller: 'home', action: 'index'
   	end
   end
