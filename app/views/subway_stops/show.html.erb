@@ -27,8 +27,13 @@
 
 <div class="container">
 	<h3>Posts</h3>
-	<%= render @subway_stop.posts %>
+	
+	<% @subway_stop.posts.order(:cached_weighted_score).reverse.each do |post| %>
 
+	<%= render post %>
+
+	<% end %>
+	
 
 	<% if current_user %>
 	  <h2>Add a post:</h2>
