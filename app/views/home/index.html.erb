@@ -1,13 +1,17 @@
-<div class="jumbotron text-center">
+<div class="container">
+	<div class="jumbotron text-center" id="home-jumbo">
 
-<% if current_user %>
-	<%= render 'users/tools' %>
-<% end %>
+		<% if current_user %>
+			<%= render 'users/tools' %>
+		<% end %>
 
-<h1>Subbit</h1>
-<h2>Welcome to Subbit!</h2>
+		<div class="subbit">
+			<h1>Subbit</h1>
+			<h2>Welcome to Subbit!</h2>
 
-<%= render 'login' %>
+			<%= render 'login' %>
 
-<%= link_to 'Enter Subbit', controller: 'subway_stops' %>
+			<%= link_to 'Enter Subbit', controller: 'subway_stops' %>
+		</div>
+	</div>
 </div>

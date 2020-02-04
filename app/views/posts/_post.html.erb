@@ -1,7 +1,12 @@
+<div class="container">
 <div class="posts">
 <p>
   <strong>User:</strong>
-  <%= post.username %>
+  <% if post.username != nil %>
+    <%= link_to post.username, user_path(post.user.id) %>
+  <% else %>
+    [deleted] 
+  <% end %>
 </p>
 
 <p>
@@ -54,11 +59,11 @@
   
   <br>
 
+<% if false %>
   Vote total:
   <%= post.score %>
-
-</div>
-
-
+<% end %>
 
 </p>
+</div>
+</div>

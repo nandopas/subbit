@@ -2,10 +2,11 @@
 
   <p> hello admin! </p>
   <%= link_to 'Admin Tools', users_path %>
-
+<%# Don't really need this anymore, its in the navbar %>
+<% if false %>
 <% elsif current_user %>
 
 	<%= link_to current_user.username, user_path(current_user) %>
 	<p id="alert"><%= alert %></p>
-	
+<% end %>
 <% end %>

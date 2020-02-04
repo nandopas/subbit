@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  get 'about/index'
   get 'map/index'
   #resources :admins
   resources :users do

@@ -1,15 +1,13 @@
-
-	
 <%= render 'users/tools' %>
 
-<div class="container">
+
 	<div id="map-canvas" class="jumbotron text-center">
 		
 	</div>
 
 	<div id="overlay" class="text-center">
-	<h1>
-		<%= link_to 'Subbit!', controller: 'home' %>
+		<h1>
+			<%= link_to 'Subbit!', controller: 'home' %>
 		</h1>
 
 		<%= render 'home/login' %>
@@ -41,19 +39,20 @@
 </div>
 
 <script>
-//https://developers.google.com/maps/documentation/javascript/adding-a-google-map
+	//https://developers.google.com/maps/documentation/javascript/adding-a-google-map
 
-// Initialize and add the map
-function initMap() {
-  // The location of Uluru
-  var uluru = {lat: 40.808262, lng: -73.963891};
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-      document.getElementById('map-canvas'), {zoom: 17, center: uluru});
-  // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({position: uluru, map: map});
-}
+	// Initialize and add the map
+	function initMap() {
+	  // The location of Uluru
+	  var uluru = {lat: 40.808262, lng: -73.963891};
+	  // The map, centered at Uluru
+	  var map = new google.maps.Map(
+	      document.getElementById('map-canvas'), {zoom: 17, center: uluru});
+	  // The marker, positioned at Uluru
+	  var marker = new google.maps.Marker({position: uluru, map: map});
+	}
 </script>
+
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAe-V-ldBqH5_-dAobZW3DDKG3xI0VvmY&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=<% ENV['GOOGLE_API_KEY'] %>&callback=initMap">
     </script>

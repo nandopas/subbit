@@ -10,11 +10,22 @@
     
 
     <style>
+
+      /*from google maps api example, not using anymore
       #map {
         width: 100%;
         height: 400px;
         background-color: grey;
       }
+      */
+
+      #home-jumbo {
+        /*background-color: #e6f5ff;*/
+        background-image: url(/assets/subwaymap.jpg);
+        /* z index affects order, lower index means behind elements*/
+        z-index: -1;
+      }
+
       html, body, #map-canvas{
         height: 100%;
         width: 100%;
@@ -25,6 +36,22 @@
         height:   450px;
         z-index:    -1;
       }
+
+      
+      /*to give the home screen a gray transluscent overlay */
+      .subbit {
+        background: #fff;
+        opacity:    .8;
+        position:   relative;
+        padding:    10px;
+        top:      0px;
+        z-index:    2;
+        margin:   0 auto;
+        width:    75%;
+        border-radius:5px;
+      }
+      
+      
 
       #overlay {
         background: #fff;
@@ -38,21 +65,45 @@
         border-radius:5px;
       }
 
-      li {
-          display: inline;
+      #nav {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #cce6ff;
       }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      
+      li a:hover {
+        background-color: #3399ff;
+      }
+
+      
     </style>
   </head>
 
   <body>
     <navbar>
-      <ul>
-        <li><%= link_to 'Home', root_path %></li>
-        <li><a href="#">News</a></li>
+      <ul id="nav">
+        <li><%= link_to 'Home', root_path %></li>        
+        <li><%= link_to 'About', controller: 'about' %></li>
         <% if current_user %>
-        <li><%= link_to 'User Page', user_path(current_user) %></li>
+          <li style="float:right"><%= link_to 'User Page', user_path(current_user) %></li>
+        <% else %>
+          <li style="float:right"><%= link_to 'Sign Up!', signup_path %></li>
+          <li style="float:right"><%= link_to 'Log In!', login_path %></li>
         <% end %>
-        <li><a href="#">About</a></li>
       </ul>
     </navbar>
     <%= yield %>

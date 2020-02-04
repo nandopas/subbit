@@ -3,10 +3,14 @@
 <p id="notice"><%= notice %></p>
 
 <%= render 'home/login' %>
+
+<h1> <%= @user.username + "'s" %> profile </h1>
+<% if current_user.admin? %>
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+<% end %>
 
 <p>
   <strong>Username:</strong>
@@ -21,6 +25,7 @@
 <h2> <%= @user.username + "'s" %> posts </h2>
 <%= render @user.posts %>
 
+<% if current_user.id == @user.id %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Home', root_path %> |
 <%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure? Account is not recoverable'} %>
+<% end %>
