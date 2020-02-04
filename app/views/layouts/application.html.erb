@@ -26,10 +26,12 @@
         z-index: -1;
       }
 
+      /*
       html, body, #map-canvas{
         height: 100%;
         width: 100%;
       }
+      */
 
       #map-canvas {
         background: transparent no-repeat 1 1;
@@ -37,7 +39,11 @@
         z-index:    -1;
       }
 
-      
+      /* for cards in _posts */
+      div.card {
+        background-color: #cce6ff;
+      }
+
       /*to give the home screen a gray transluscent overlay */
       .subbit {
         background: #fff;
@@ -52,11 +58,10 @@
       }
       
       
-
       #overlay {
         background: #fff;
         opacity:    .8;
-        position:   relative;
+        /*position:   relative;*/
         padding:    10px;
         top:      -360px;
         z-index:    2;
@@ -98,11 +103,17 @@
       <ul id="nav">
         <li><%= link_to 'Home', root_path %></li>        
         <li><%= link_to 'About', controller: 'about' %></li>
+        <li><%= link_to 'Subway Stops', subway_stops_path %></li>
+
         <% if current_user %>
           <li style="float:right"><%= link_to 'User Page', user_path(current_user) %></li>
         <% else %>
           <li style="float:right"><%= link_to 'Sign Up!', signup_path %></li>
           <li style="float:right"><%= link_to 'Log In!', login_path %></li>
+        <% end %>
+
+        <% if current_user && current_user.admin? %>
+        <%= render 'users/tools' %>
         <% end %>
       </ul>
     </navbar>

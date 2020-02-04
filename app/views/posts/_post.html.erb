@@ -1,4 +1,6 @@
 <div class="container">
+
+<% if false %>
 <div class="posts">
 <p>
   <strong>User:</strong>
@@ -66,4 +68,55 @@
 
 </p>
 </div>
+<% end %>
+
+
+
+
+
+
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= link_to post.topic, [post.subway_stop, post] %> 
+      by 
+      <% if post.username != nil %>
+        <%= link_to post.username, user_path(post.user.id) %>
+      <% else %>
+        [deleted] 
+      <% end %>
+    </h5>
+    <p class="card-text"><%= post.body %></p>
+
+    <% if current_user %>
+      <%= link_to like_post_path(post), method: :put do %>
+        Upvote
+        <%= post.get_upvotes.size %>
+      <% end %>
+    <% else %>
+      Upvotes
+        <%= post.get_upvotes.size %>
+    <% end %>
+    
+    
+    <% if current_user %>
+      <%= link_to dislike_post_path(post), method: :put do %>
+        Downvote
+        <%= post.get_downvotes.size %>
+      <% end %>
+    <% else %>
+      Downvotes
+        <%= post.get_downvotes.size %>
+    <% end %>
+
+    <% if current_user && current_user.admin? %>
+      <br>
+      <%= link_to 'Destroy Post', [post.subway_stop, post],
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+</div>
+
 </div>
