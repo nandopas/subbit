@@ -1,17 +1,18 @@
 <div class="container">
 	<div class="jumbotron text-center" id="home-jumbo">
-
-		<% if current_user %>
-			<%= render 'users/tools' %>
-		<% end %>
-
 		<div class="subbit">
-			<h1>Subbit</h1>
-			<h2>Welcome to Subbit!</h2>
+			<h1>Welcome to Subbit!</h1>
 
 			<%= render 'login' %>
 
 			<%= link_to 'Enter Subbit', controller: 'subway_stops' %>
 		</div>
 	</div>
+	
+	<h1 class="text-center"> Hottest Posts: </h1>
+
+	<% @posts.order(:cached_weighted_score).reverse.each do |post| %>
+		<%= render post %>
+	<% end %>
+	
 </div>

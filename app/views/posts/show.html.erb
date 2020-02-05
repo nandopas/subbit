@@ -1,14 +1,11 @@
 <div class="container text-center">
 
-<%= render 'users/tools' %>
-
 <h1>
 <%= link_to 'Subbit!', controller: 'home' %>
 </h1>
 
-<%= render 'home/login' %>
-
-<h3>Showing the Post</h3>
+<%= render @post %>
+<h3><%= @post.topic %></h3>
 <p>
   <strong>Line:</strong>
   <%= @subway_stop.line %> ---
@@ -20,7 +17,11 @@
 
 <p>
   <strong>User:</strong>
-  <%= @post.user %>
+  <% if @post.username != nil %>
+    <%= link_to @post.username, user_path(@post.user.id) %>
+  <% else %>
+    [deleted] 
+  <% end %>
 </p>
 
 <p>

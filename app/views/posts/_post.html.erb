@@ -78,6 +78,12 @@
 
 <div class="card">
   <div class="card-body">
+    <div style="float:right">
+      <ul style="list-style-type:none">
+        <li><h2>Borough:<%= post.subway_stop.borough %></h2></li><br>
+        <li><h2>Stop: <%= post.subway_stop.stop + " " + post.subway_stop.line %></h2></li><br>
+      </ul>
+    </div>
     <h5 class="card-title">
       <%= link_to post.topic, [post.subway_stop, post] %> 
       by 
@@ -88,6 +94,8 @@
       <% end %>
     </h5>
     <p class="card-text"><%= post.body %></p>
+
+    
 
     <% if current_user %>
       <%= link_to like_post_path(post), method: :put do %>

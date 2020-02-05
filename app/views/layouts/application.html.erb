@@ -107,6 +107,7 @@
 
         <% if current_user %>
           <li style="float:right"><%= link_to 'User Page', user_path(current_user) %></li>
+          <li style="float:right"><%= link_to 'Log Out', logout_path(current_user) %></li>          
         <% else %>
           <li style="float:right"><%= link_to 'Sign Up!', signup_path %></li>
           <li style="float:right"><%= link_to 'Log In!', login_path %></li>
@@ -117,6 +118,27 @@
         <% end %>
       </ul>
     </navbar>
+
     <%= yield %>
+
+    <footer>
+      <ul id="nav">
+        <li><%= link_to 'Home', root_path %></li>        
+        <li><%= link_to 'About', controller: 'about' %></li>
+        <li><%= link_to 'Subway Stops', subway_stops_path %></li>
+
+        <% if current_user %>
+          <li style="float:right"><%= link_to 'User Page', user_path(current_user) %></li>
+          <li style="float:right"><%= link_to 'Log Out', logout_path(current_user) %></li>          
+        <% else %>
+          <li style="float:right"><%= link_to 'Sign Up!', signup_path %></li>
+          <li style="float:right"><%= link_to 'Log In!', login_path %></li>
+        <% end %>
+
+        <% if current_user && current_user.admin? %>
+        <%= render 'users/tools' %>
+        <% end %>
+      </ul>
+    </footer>
   </body>
 </html>
