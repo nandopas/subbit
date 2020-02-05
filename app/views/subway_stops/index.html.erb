@@ -15,19 +15,22 @@
   <tr>
     <th>Line</th>
     <th>Stop</th>
+    <th>Borough</th>
     <th colspan="3"></th>
   </tr>
 
-  <% @subway_stops.each do |subway_stop| %>
+
+  <% @subway_stops.order(:borough).each do |subway_stop| %>
     <tr>
-        <td><%= subway_stop.line %></td>
-        <td><%= subway_stop.stop %></td>
-        <td><%= link_to 'Show', subway_stop %></td>
-        <% if current_user && current_user.admin? %>
-          <td><%= link_to 'Edit', edit_subway_stop_path(subway_stop) %></td>
-          <td><%= link_to 'Destroy', subway_stop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+      <td><%= subway_stop.line %></td>
+      <td><%= subway_stop.stop %></td>
+      <td><%= subway_stop.borough %></td>
+      <td><%= link_to 'Show', subway_stop %></td>
+      <% if current_user && current_user.admin? %>
+        <td><%= link_to 'Edit', edit_subway_stop_path(subway_stop) %></td>
+        <td><%= link_to 'Destroy', subway_stop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
   <% end %>
 </table>
 
