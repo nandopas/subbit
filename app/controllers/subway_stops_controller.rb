@@ -52,6 +52,6 @@ class SubwayStopsController < ApplicationController
 
   private
     def subway_stop_params
-      params.require(:subway_stop).permit(:line, :stop)
+      params.require(:subway_stop).permit(:line, :stop, :borough, :structure, :gtfs_latitude, :gtfs_longitude, :north_direction_label, :south_direction_label)
     end
 end
