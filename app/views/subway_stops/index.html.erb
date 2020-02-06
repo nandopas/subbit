@@ -11,6 +11,14 @@
 <%= link_to 'Create new stop', new_subway_stop_path %> 
 <% end %>
 
+<% if false %>
+<%= form_with(subway_stops_path, method: "get") do %>
+  <%= label_tag(:search, "Search for a stop:") %>
+  <%= text_field_tag(:search) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<% end %>
+
 <table class="table">
   <tr>
     <th>Line</th>
