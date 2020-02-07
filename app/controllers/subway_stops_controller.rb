@@ -1,5 +1,6 @@
 class SubwayStopsController < ApplicationController
   before_action :not_admin, only: [:edit, :update, :destroy]
+  #after_action :log_views, only: [:show]
 
   def index
     if (params[:filter] == 'M')
@@ -21,7 +22,6 @@ class SubwayStopsController < ApplicationController
   
   def show
     @subway_stop = SubwayStop.find(params[:id])
-    #@subway_stop.views += 1
   end
 
   def new
@@ -69,4 +69,9 @@ class SubwayStopsController < ApplicationController
     def subway_stop_params
       params.require(:subway_stop).permit(:line, :stop, :borough, :structure, :gtfs_latitude, :gtfs_longitude, :north_direction_label, :south_direction_label, :search, :filter)
     end
+=begin
+    def log_views
+      @subway_stop.views += 1
+    end
+=end
 end
