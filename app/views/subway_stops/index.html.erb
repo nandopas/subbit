@@ -1,16 +1,9 @@
 <div class="container text-center">
 
-<%= render 'users/tools' %>
-
 <h1>Welcome to Subbit!</h1>
 <h2>Showing Subway Stops</h2>
 
 <%= render 'home/login' %>
-
-<% if current_user && current_user.admin? %>
-<%= link_to 'Create new stop', new_subway_stop_path %> 
-<% end %>
-
 
 <%= form_tag(subway_stops_path, method: :get) do %>
   <%= label_tag(:search, "Search for a stop:") %>
@@ -44,12 +37,12 @@
   </tr>
 
 
-  <% @subway_stops.order(:borough).each do |subway_stop| %>
+  <% @subway_stops.order(:stop).each do |subway_stop| %>
     <tr>
       <td><%= subway_stop.line %></td>
       <td><%= subway_stop.stop %></td>
       <td><%= subway_stop.borough %></td>
-      <td><%= link_to 'Show', subway_stop %></td>
+      <td><%= link_to 'Show', subway_stop, class: "btn btn-default", style: "background-color:#cce6ff; color:white"%></td>
       <% if current_user && current_user.admin? %>
         <td><%= link_to 'Edit', edit_subway_stop_path(subway_stop) %></td>
         <td><%= link_to 'Destroy', subway_stop, method: :delete, data: { confirm: 'Are you sure?' } %></td>

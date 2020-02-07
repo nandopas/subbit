@@ -1,19 +1,16 @@
 # Subbit
-## Hosted as well at http://shielded-earth-79259.herokuapp.com/
+## Hosted as well at http://shielded-earth-79259.herokuapp.com/ (not up to date)
 
 to run locally, run server on port 4000
 
-* Database: sqlite3
+* run rails db:setup db:seed to create database locally (sqlite3)
 
-* run rails db:migrate to create database locally
 
 ## Next Steps
 
-* Migrate database to postgresql to allow deployment on heroku - done (kind of)
+* show posts in order of most votes (done)
 
-* show posts in order of most votes
-
-* connect to a location API to include location at stops
+* connect to a location API to include location at stops (done)
 
 * Also to provide location to users
 
@@ -26,3 +23,33 @@ to run locally, run server on port 4000
 * send a user sign up email (done)
 
 * search for a post
+
+# What is Subbit?
+
+## Lost in New York?
+
+#### Ever step out of a subway station and don't know what to do?
+Go on subbit and search the feed for any subway station filled with user generated posts of whats going on. 
+
+### Vote for your favorites!
+Good posts get upvoted to the top of the page and bad posts sink down to the bottom, allowing for a fully user oriented experience to discover more about your neighborhood or a new stop.
+
+### Post about anything!
+* Pop up store by Prince St R? Yup.
+* Cheap taco truck by King's Point B in Brooklyn? Got it.
+* Those Joker Steps everyone wants to see for some reason off 167 St 4,B,D in the Bronx? Sure thing, but try some of the amazing food near by instead!.
+* Really fat squirrel hanging out at Main St 7 in Queens? Why not?
+* Never been to Staten Island? Check it out on Subbit!
+
+Built by Fernando Pascual after spending a lot of time going to new subway stops and being overwhelemed by not knowing what to do. Now you can just hop on subbit when you hop off the train and see the top things going on near by as voted by the people of NYC!
+
+Any advice, bugs, or feedback? Let me know!
+
+This is still very much a work in progress, so would love to know features to add!
+
+### Future plans:
+* Comments on posts
+* Subway stop live chat feed
+* Direct messaging between users
+* Better maps integration and directions
+# Contact: nandopas2@gmail.com

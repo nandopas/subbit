@@ -116,7 +116,7 @@
         <% end %>
 
         <% if current_user && current_user.admin? %>
-        <%= render 'users/tools' %>
+          <li><%= render 'users/tools' %></li>
         <% end %>
       </ul>
     </navbar>
@@ -137,9 +137,7 @@
           <li style="float:right"><%= link_to 'Log In!', login_path %></li>
         <% end %>
 
-        <% if current_user && current_user.admin? %>
-        <%= render 'users/tools' %>
-        <% end %>
+
       </ul>
     </footer>
   </body>

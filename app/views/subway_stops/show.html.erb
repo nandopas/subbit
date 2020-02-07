@@ -8,6 +8,10 @@
 
 	<%= render 'home/login' %>
 
+	<% if !current_user %>
+		<h2 style="background-color:#cce6ff"> Sign up or log in to create a post! </h2>
+	<% end %>
+
 	<div>
 		<h2> 
 		 	<%= @subway_stop.stop %>

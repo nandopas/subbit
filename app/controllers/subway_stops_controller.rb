@@ -21,6 +21,7 @@ class SubwayStopsController < ApplicationController
   
   def show
     @subway_stop = SubwayStop.find(params[:id])
+    #@subway_stop.views += 1
   end
 
   def new

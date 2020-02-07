@@ -4,11 +4,11 @@
 			<h1>Welcome to Subbit!</h1>
 
 			<%= render 'login' %>
-		
-			<div class="btn-group" role="group" >
-				<%= link_to 'Enter Subbit', controller: 'subway_stops', class: "btn btn-default", style: "background-color:#cce6ff; color:white" %>
+			<div class="btn">
+				<%= link_to 'Enter Subbit', subway_stops_path, class: "btn btn-default", style: "background-color:#cce6ff; color:white; opacity:1" %>
 			</div>
 		</div>
+
 	</div>
 	
 	<h1 class="text-center"> Hottest Posts: </h1>
@@ -18,3 +18,4 @@
 	<% end %>
 	
 </div>
+
