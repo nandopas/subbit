@@ -1,27 +1,22 @@
+<div id="map-canvas" class="jumbotron text-center">
+</div>
 
+<div id="overlay" class="text-center">
+	<h1>
+		<%= link_to 'Subbit!', controller: 'home' %>
+	</h1>
 
+	<%= render 'home/login' %>
 
-	<div id="map-canvas" class="jumbotron text-center">
-		
-	</div>
+	<div>
+		<h2> 
+		 	<%= @subway_stop.stop %>
+		</h2>
 
-	<div id="overlay" class="text-center">
-		<h1>
-			<%= link_to 'Subbit!', controller: 'home' %>
-		</h1>
-
-		<%= render 'home/login' %>
-
-		<div>
-			<h2> 
-			  <%= @subway_stop.stop %>
-			</h2>
-
-			<h3>
-			  Line:
-			  <%= @subway_stop.line %> 
-			</h3>
-		</div>
+		<h3>
+			Line:
+			<%= @subway_stop.line %> 
+		</h3>
 	</div>
 </div>
 
@@ -29,17 +24,13 @@
 	<h3>Posts</h3>
 	
 	<% @subway_stop.posts.order(:cached_weighted_score).reverse.each do |post| %>
-
-	<%= render post %>
-
+		<%= render post %>
 	<% end %>
 	
-
 	<% if current_user %>
 	  <h2>Add a post:</h2>
 	  <%= render 'posts/form' %> 
 	<% end %>
-
 </div>
 
 <script>
@@ -50,8 +41,7 @@
 	  // The location of Uluru
 	  var uluru = {lat: 40.808262, lng: -73.963891};
 	  // The map, centered at Uluru
-	  var map = new google.maps.Map(
-	      document.getElementById('map-canvas'), {zoom: 17, center: uluru});
+	  var map = new google.maps.Map(document.getElementById('map-canvas'), {zoom: 17, center: uluru});
 	  // The marker, positioned at Uluru
 	  var marker = new google.maps.Marker({position: uluru, map: map});
 	}

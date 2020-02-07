@@ -2,7 +2,21 @@ class SubwayStopsController < ApplicationController
   before_action :not_admin, only: [:edit, :update, :destroy]
 
   def index
-    @subway_stops = SubwayStop.all
+    if (params[:filter] == 'M')
+      @subway_stops = SubwayStop.where(borough: 'M')
+    elsif (params[:filter] == 'Bk')
+      @subway_stops = SubwayStop.where(borough: 'Bk')
+    elsif (params[:filter] == 'Bx')
+      @subway_stops = SubwayStop.where(borough: 'Bx')
+    elsif (params[:filter] == 'Q')
+      @subway_stops = SubwayStop.where(borough: 'Q')
+    elsif (params[:filter] == 'SI')
+      @subway_stops = SubwayStop.where(borough: 'SI')
+    #@subway_stops = SubwayStop.search(params[:search])
+    else
+      @subway_stops = SubwayStop.search(params[:search])
+    end
+
   end
   
   def show
@@ -52,6 +66,6 @@ class SubwayStopsController < ApplicationController
 
   private
     def subway_stop_params
-      params.require(:subway_stop).permit(:line, :stop, :borough, :structure, :gtfs_latitude, :gtfs_longitude, :north_direction_label, :south_direction_label)
+      params.require(:subway_stop).permit(:line, :stop, :borough, :structure, :gtfs_latitude, :gtfs_longitude, :north_direction_label, :south_direction_label, :search, :filter)
     end
 end
