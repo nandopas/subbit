@@ -3,8 +3,14 @@
 <h1>
 <%= link_to 'Subbit!', controller: 'home' %>
 </h1>
+<%= link_to 'Back to ' + @subway_stop.stop, subway_stop_path(@subway_stop), class: "btn btn-default", style: "background-color:#cce6ff; color:grey" %>
+
+</div>
 
 <%= render @post %>
+
+
+<% if false %>
 <h3><%= @post.topic %></h3>
 <p>
   <strong>Line:</strong>
@@ -56,6 +62,10 @@
   <% end %>
   
 <br>
+<% end %>
 
-<%= link_to 'Back to ' + @subway_stop.stop, subway_stop_path(@subway_stop) %>
+
+<div class="text-center">
+<%= link_to 'Back to ' + @subway_stop.stop, subway_stop_path(@subway_stop), class: "btn btn-default", style: "background-color:#cce6ff; color:grey; margin:6px" %>
 </div>
+

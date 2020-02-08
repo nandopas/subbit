@@ -1,6 +1,6 @@
 <div class="container">
 <%= form_with(model: [ @subway_stop, @subway_stop.posts.build ], local: true) do |form| %>
-    
+  
   <div class="form-group">
     <%= form.label :title %><br>
     <%= form.text_field :topic, class: "form-control" %>
@@ -11,10 +11,12 @@
     <%= form.text_area :body, class: "form-control" %>
   </div>
 
+<% if false %>
   <div class="form-group">
     <%= form.label :tags %><br>
     <%= form.text_field :tags, class: "form-control" %>
   </div>
+<% end %>
 
   <div class="btn-group" role="group" >
     <%= form.submit class: "btn", style: "background-color:#cce6ff; color:#A9A9A9"%>
