@@ -1,14 +1,19 @@
 # Subbit
-## Hosted as well at http://shielded-earth-79259.herokuapp.com/
+## Hosted as well at www.subbit.net
 
 to run locally, run server on port 4000
+```
+rails s -p 4000
+```
 
-* run rails db:setup db:seed to create database locally (sqlite3)
+to create database locally (sqlite3):
 
-* I made some changes to the seed file so some features may be a bit wonky if you run locally
-
-
+```
+rails db:reset rails db:migrate rails db:seed
+```
 ## Next Steps
+
+* add more stops after a userbase is grown
 
 * show posts in order of most votes (done)
 

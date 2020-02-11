@@ -3,7 +3,7 @@ class SubwayStopsController < ApplicationController
   #after_action :log_views, only: [:show]
 
   #whitelist of stops
-  @@ids = [1,2,3,4] 
+  #@@ids = [1,2,3,4] 
 
   def index
 =begin
@@ -23,16 +23,18 @@ class SubwayStopsController < ApplicationController
     end
 =end
     #whitelist of subway stops to show on index
-    if current_user && current_user.admin?
+    #if current_user && current_user.admin?
       @subway_stops = SubwayStop.all
-    else
-      @subway_stops = SubwayStop.where(id: @@ids)
-    end
+    #else
+      #@subway_stops = SubwayStop.where(id: @@ids)
+    #end
 
 
   end
   
   def show
+    @subway_stop = SubwayStop.find(params[:id])
+=begin
     #redirect if user tries to manipulate url id
     #ids = ['309', '168', '18']
     #check if params in whitelist
@@ -45,6 +47,7 @@ class SubwayStopsController < ApplicationController
         @subway_stop = SubwayStop.find(params[:id])
       end
     end
+=end
   end
 
   def new
