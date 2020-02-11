@@ -24,8 +24,8 @@ Rails.application.routes.draw do
     end
   end
 
-
-  root 'home#index'
+  root 'subway_stops#index'
+  #root 'home#index'
   #get 'users/:user_id/posts', to: 'posts#index' 
   #get '/subway_stops/:subway_stop_id/posts', to: 'posts#show' 
 

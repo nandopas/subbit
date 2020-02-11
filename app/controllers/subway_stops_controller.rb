@@ -2,7 +2,11 @@ class SubwayStopsController < ApplicationController
   before_action :not_admin, only: [:edit, :update, :destroy]
   #after_action :log_views, only: [:show]
 
+  #whitelist of stops
+  @@ids = [1,2,3,4] 
+
   def index
+=begin
     if (params[:filter] == 'M')
       @subway_stops = SubwayStop.where(borough: 'M')
     elsif (params[:filter] == 'Bk')
@@ -17,11 +21,30 @@ class SubwayStopsController < ApplicationController
     else
       @subway_stops = SubwayStop.search(params[:search])
     end
+=end
+    #whitelist of subway stops to show on index
+    if current_user && current_user.admin?
+      @subway_stops = SubwayStop.all
+    else
+      @subway_stops = SubwayStop.where(id: @@ids)
+    end
+
 
   end
   
   def show
-    @subway_stop = SubwayStop.find(params[:id])
+    #redirect if user tries to manipulate url id
+    #ids = ['309', '168', '18']
+    #check if params in whitelist
+    if current_user && current_user.admin?
+      @subway_stop = SubwayStop.find(params[:id])
+    else
+      if !(@@ids.map(&:to_s).include? params[:id])
+        redirect_to subway_stops_path
+      else
+        @subway_stop = SubwayStop.find(params[:id])
+      end
+    end
   end
 
   def new

@@ -3,7 +3,7 @@
 
 <div id="overlay" class="text-center">
 	<h1>
-		<%= link_to 'Subbit!', controller: 'home' %>
+		<%= link_to 'Subbit!', controller: 'subway_stops' %>
 	</h1>
 
 	<%= render 'home/login' %>
@@ -12,6 +12,10 @@
 		<h2 style="background-color:#cce6ff"> Sign up or log in to create a post! </h2>
 	<% end %>
 
+	<% if current_user && current_user.admin? %>
+		<%= link_to "edit stop", edit_subway_stop_path(@subway_stop), class: "btn btn-default", style: "background-color:#cce6ff; color:white" %>
+		<%= link_to 'Delete stop', @subway_stop, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-default", style: "background-color:#cce6ff; color:white" %>
+	<% end %>
 	<div>
 		<h2> 
 		 	<%= @subway_stop.stop %>
@@ -25,9 +29,9 @@
 </div>
 
 <div class="container">
-	<h3>Posts</h3>
+	<h3>Today's Posts</h3>
 	
-	<% @subway_stop.posts.order(:cached_weighted_score).reverse.each do |post| %>
+	<% @subway_stop.posts.today.order(:cached_weighted_score).reverse.each do |post| %>
 		<%= render post %>
 	<% end %>
 	

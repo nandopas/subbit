@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_230913) do
+ActiveRecord::Schema.define(version: 2020_02_11_024719) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 2020_02_06_230913) do
     t.integer "user_id"
     t.string "tags"
     t.integer "score"
-    t.string "username"
     t.integer "cached_votes_total", default: 0
     t.integer "cached_votes_score", default: 0
     t.integer "cached_votes_up", default: 0
@@ -52,8 +51,6 @@ ActiveRecord::Schema.define(version: 2020_02_06_230913) do
     t.string "structure"
     t.float "gtfs_latitude"
     t.float "gtfs_longitude"
-    t.string "north_direction_label"
-    t.string "south_direction_label"
   end
 
   create_table "users", force: :cascade do |t|

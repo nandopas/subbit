@@ -20,9 +20,9 @@ csv.each do |row|
  
   row.to_hash
 
+  #puts row['line'].bytes
   #puts row['line']
-  #puts row['line']
-  #puts row[row.headers.first]
+  #puts row[row.headers.first].bytes
   #puts "There are now #{SubwayStop.count} rows in the transactions table"
 
   @t = SubwayStop.new
@@ -32,10 +32,11 @@ csv.each do |row|
   @t.structure = row['structure']
   @t.gtfs_latitude = row['gtfs_latitude']
   @t.gtfs_longitude = row['gtfs_longitude']
-  @t.north_direction_label = row['north_direction_label']
-  @t.south_direction_label = row['south_direction_label']
+  #@t.north_direction_label = row['north_direction_label']
+  #@t.south_direction_label = row['south_direction_label']
   @t.save
   puts "#{@t.line}, #{@t.stop} saved"
+
 end
 
 

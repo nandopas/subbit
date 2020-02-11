@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   before_action :herd_user, except: [:new, :create]
-  before_action :not_admin, only: [:index]
+  #before_action :not_admin, only: [:index]
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if current_user && current_user.admin?
+      @users = User.all
+    else
+      redirect_back fallback_location: root_path
+    end
   end
 
   # GET /users/1
@@ -20,7 +24,11 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
+    if !current_user
+      @user = User.new
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /users/1/edit
@@ -40,7 +48,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         UserMailer.with(user: @user).welcome_email.deliver!
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to root_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -67,8 +75,9 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user.destroy
+    session.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

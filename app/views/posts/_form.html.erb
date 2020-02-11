@@ -2,14 +2,16 @@
 <%= form_with(model: [ @subway_stop, @subway_stop.posts.build ], local: true) do |form| %>
   
   <div class="form-group">
-    <%= form.label :title %><br>
+    <%= form.label :topic, "What's up?" %> (140 characters max)<br>
     <%= form.text_field :topic, class: "form-control" %>
   </div>
 
+  <% if false %>
   <div class="form-group">
     <%= form.label :text %><br>
     <%= form.text_area :body, class: "form-control" %>
   </div>
+  <% end %>
 
 <% if false %>
   <div class="form-group">
@@ -23,4 +25,3 @@
   </div>
 <% end %>
 </div>
-

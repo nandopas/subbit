@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% if current_user && current_user.admin? %>
+
 <h1> <%= @user.username + "'s" %> profile </h1>
 <% if current_user.admin? %>
 <p>
@@ -17,8 +19,9 @@
   <strong>User since:</strong>
   <%= @user.created_at %>
 </p>
+<% end %>
 
-<h2> <%= @user.username + "'s" %> posts </h2>
+<h1> <%= @user.username + "'s" %> posts </h1>
 <%= render @user.posts %>
 
 <% if current_user.id == @user.id %>

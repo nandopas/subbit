@@ -12,6 +12,9 @@
 
 <div class="container text-center">
 
+<% if false %>
+
+
 <%= form_tag(subway_stops_path, method: :get) do %>
   <%= label_tag(:search, "Search for a stop:") %>
   <%= text_field_tag(:search, params[:search]) %>
@@ -35,6 +38,29 @@
 <% end %>
 
 
+
+<% end %>
+
+
+
+
+
+<div class="row">
+  <% @subway_stops.each do |subway_stop| %>
+    <div class="col-md-3">
+      <div class="card mb-3 shadow-sm">
+        <h4><%= link_to 'Go to: ' + subway_stop.stop, subway_stop %></h4>
+        <strong> Line: </strong><%= subway_stop.line %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+<% if false %>
+
 <table class="table">
   <tr>
     <th>Line</th>
@@ -44,7 +70,7 @@
   </tr>
 
 
-  <% @subway_stops.order(:stop).each do |subway_stop| %>
+    <% @subway_stops.order(:stop).each do |subway_stop| %>
     <tr>
       <td><%= subway_stop.line %></td>
       <td><%= subway_stop.stop %></td>
@@ -55,7 +81,17 @@
         <td><%= link_to 'Destroy', subway_stop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tr>
-  <% end %>
+
+    <% end %>
+
 </table>
 
+<% end %>
+
 </div>
+
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAe-V-ldBqH5_-dAobZW3DDKG3xI0VvmY&callback=initMap">
+    </script>

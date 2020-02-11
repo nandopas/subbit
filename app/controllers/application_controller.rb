@@ -11,14 +11,16 @@ class ApplicationController < ActionController::Base
   
   def herd_user
   	if !(current_user)
-  	  redirect_to controller: 'home', action: 'index'
+  	  redirect_to 'subway_stop'
   	end
   end
 
   def not_admin
-    if !(current_user.admin?)
-      session[:return_to] ||= request.referer
-      redirect_to session.delete(:return_to)
+    if !(current_user && current_user.admin?)
+      redirect_to root_path, fallback_location: root_path, alert: "Pls dont mess with the urls"
+      #old, depreciated in new rails
+      #session[:return_to] ||= request.referer
+      #redirect_to session.delete(:return_to)
     end
   end
 
