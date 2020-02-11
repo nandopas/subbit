@@ -16,16 +16,16 @@
 
 	<h3> Post about anything! </h3> 
 
-		What's going on on campus <%= link_to 'Columbia', subway_stop_path(309), class: "btn btn-default", style: "background-color:#cce6ff; color:white; opacity:1" %> 
+		What's going on on campus <%= link_to 'Columbia', subway_stop_path(@columbia.id), class: "btn btn-default", style: "background-color:#cce6ff; color:white; opacity:1" %> 
 		and 
-		<%= link_to 'NYU', subway_stop_path(168), class: "btn btn-default", style: "background-color:#8900e1; color:white" %>?<br>
+		<%= link_to 'NYU', subway_stop_path(@nyu.id), class: "btn btn-default", style: "background-color:#8900e1; color:white" %>?<br>
 
-		New popup store opened up near <%= link_to 'Prince St', subway_stop_path(18), class: "btn btn-default", style: "background-color:#ffff00; color:black" %>?<br>
+		New popup store opened up near <%= link_to 'Prince St', subway_stop_path(@soho.id), class: "btn btn-default", style: "background-color:#ffff00; color:black" %>?<br>
 
-		Walked into a bar and it's poppin? It's happy hour somewhere else and wish you knew? Check it on subbit! <%= link_to 'West village', subway_stop_path(168), class: "btn btn-default", style: "background-color:#ff9900; color:black" %><br>
+		Walked into a bar and it's poppin? It's happy hour somewhere else and wish you knew? Check it on subbit! <%= link_to 'West village', subway_stop_path(@nyu.id), class: "btn btn-default", style: "background-color:#ff9900; color:black" %><br>
 
 		Found a fat squirrel at 
-		<%= link_to 'Union Square', subway_stop_path(408), class: "btn btn-default", style: "background-color:#33cc33; color:black" %> 
+		<%= link_to 'Union Square', subway_stop_path(@us.id), class: "btn btn-default", style: "background-color:#33cc33; color:black" %> 
 		and you gotta tell everyone to go see it??<br>
 
 	
