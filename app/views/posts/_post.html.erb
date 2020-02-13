@@ -89,8 +89,8 @@
     <% end %>
 
     <% if post.user.username != nil %>
-        Posted by: <%= link_to post.user.username, user_path(post.user.id) %>
-      <% else %>
+        Posted by: <%= link_to post.user.username, user_path(post.user.id) %> <%= time_ago_in_words(post.created_at) %>
+ ago      <% else %>
         [deleted] 
       <% end %><br> 
     <h3 class="card-title">

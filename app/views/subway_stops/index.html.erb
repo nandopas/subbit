@@ -45,10 +45,10 @@
 
 
 
-<div class="row">
+<div class="row" style="padding:8px">
   <% @subway_stops.each do |subway_stop| %>
     <div class="col-md-3">
-      <div class="card mb-3 shadow-sm">
+      <div class="card h-100">
         <h4><%= link_to 'Go to: ' + subway_stop.stop, subway_stop %></h4>
         <strong> Line: </strong><%= subway_stop.line %>
       </div>

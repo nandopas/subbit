@@ -1,5 +1,7 @@
 class SubwayStop < ApplicationRecord
   has_many :posts, dependent: :destroy
+  validates_associated :posts
+  accepts_nested_attributes_for :posts
   has_many :users, through: :posts
   validates :line,:stop, presence: true,
                     length: { minimum: 1 }
