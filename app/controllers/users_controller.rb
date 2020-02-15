@@ -48,8 +48,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         UserMailer.with(user: @user).welcome_email.deliver!
-        #session[:user_id] = @user.id
-        format.html { redirect_to root_path, notice: 'User was successfully created.' }
+        session[:user_id] = nil
+        session[:user_id] = @user.id
+        format.html { redirect_to root_path, notice: 'You are signed up!' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -63,7 +64,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Profile has been updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
