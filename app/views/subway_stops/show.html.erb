@@ -29,10 +29,21 @@
 </div>
 
 <div class="container">
+	<h2> Top Posts </h2>
+	<div class="row">
+	  <% Post.top_posts(@subway_stop).each do |post| %>
+	    <div class="col">
+		  <%= render post %>
+	    </div>
+	  <% end %>
+	</div>
+
 	<% if current_user %>
 	  <h2>Add a post</h2>
 	  <%= render 'posts/form' %> 
 	<% end %>
+
+	
 
 	<h2>Today's Posts</h2>
 	<% @subway_stop.posts.today.order(:cached_weighted_score).reverse.each do |post| %>

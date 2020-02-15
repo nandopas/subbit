@@ -12,4 +12,16 @@ class Post < ApplicationRecord
   def self.today
   	where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
+
+  #for displaying top 4 posts
+  def self.top_posts(subway_stop)
+    posts = []
+    subway_stop.posts.order(:cached_weighted_score).reverse.each do |post|
+      posts << post
+    end
+
+    top = []
+    top = posts[0..3]
+    return top
+  end
 end

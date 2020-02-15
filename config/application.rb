@@ -13,7 +13,7 @@ module Subbit
     #https://stackoverflow.com/questions/6118779/how-to-change-default-timezone-for-active-record-in-rails
     config.time_zone = 'Eastern Time (US & Canada)'
  	config.active_record.default_timezone = :local # Or :utc
-
+    require "sprockets/railtie"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

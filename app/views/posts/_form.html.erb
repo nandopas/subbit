@@ -2,8 +2,10 @@
 <%= form_with(model: [ @subway_stop, @subway_stop.posts.build ], local: true) do |form| %>
   
   <div class="form-group">
-    <%= form.label :topic, "What's up?" %> (140 characters max)<br>
-    <%= form.text_field :topic, class: "form-control" %>
+    <% @maximum_length = 140 %>
+    <%= form.label :topic, "What's up?" %>
+    <%= form.text_field :topic, maxlength: @maximum_length, class: "form-control", id: "topic"%>
+    <span id="counter" data-maximum-length="<%= @maximum_length %>"><%= @maximum_length %> </span>/ 140<br>
   </div>
 
   <% if false %>
@@ -25,3 +27,16 @@
   </div>
 <% end %>
 </div>
+
+<script>
+    $(document).ready(function() {
+      var topic       = $("#topic");
+      var counter     = $("#counter");
+      var max_length  = counter.data("maximum-length");
+
+      topic.keyup(function() {
+          counter.text(max_length - $(this).val().length);
+      });
+
+    });
+</script>
