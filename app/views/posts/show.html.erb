@@ -12,7 +12,7 @@
           <% end %>
 
           <%= time_ago_in_words(@post.created_at) %>
-          ago at <%= link_to @post.subway_stop.stop, [@post.subway_stop, @post] %>
+          ago at <%= link_to @post.subway_stop.stop, [@post.subway_stop] %>
         </div>
 
         <div class="card-body" style="background-color:white">
