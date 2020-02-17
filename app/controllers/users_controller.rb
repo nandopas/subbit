@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  before_action :herd_user, except: [:new, :create]
+  before_action :herd_user, except: [:index,:new, :create]
   #before_action :not_admin, only: [:index]
   # GET /users
   # GET /users.json
   def index
-    if current_user && current_user.admin?
+    if current_user 
       @users = User.all
     else
       redirect_back fallback_location: root_path

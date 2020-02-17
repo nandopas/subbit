@@ -27,9 +27,9 @@
 		</h3>
 	</div>
 </div>
-
+<hr>
 <div class="container">
-	<h2> Top Posts </h2>
+	<h2> Top Posts All Time</h2>
 	<div class="row">
 	  <% Post.top_posts(@subway_stop).each do |post| %>
 	    <div class="col">
@@ -53,7 +53,7 @@
 	
 <div class="container">
 
-	<h2>Today's Posts</h2>
+	<h2>Today's Top Posts</h2>
 	<% @subway_stop.posts.today.order(:cached_weighted_score).reverse.each do |post| %>
 		<%= render post %>
 	<% end %>

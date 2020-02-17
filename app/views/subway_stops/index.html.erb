@@ -15,32 +15,27 @@
 
 
 <% if false %>
+    <%= form_tag(subway_stops_path, method: :get) do %>
+      <%= label_tag(:search, "Search for a stop:") %>
+      <%= text_field_tag(:search, params[:search]) %>
+      <%= submit_tag("Search") %>
+    <% end %>
 
-
-<%= form_tag(subway_stops_path, method: :get) do %>
-  <%= label_tag(:search, "Search for a stop:") %>
-  <%= text_field_tag(:search, params[:search]) %>
-  <%= submit_tag("Search") %>
-<% end %>
-
-<%= form_tag(subway_stops_path, method: :get) do %>
-  <%= radio_button_tag(:filter, nil) %>
-  <%= label_tag(:filter, "All") %>
-  <%= radio_button_tag(:filter, "M") %>
-  <%= label_tag(:filter, "Manhattan") %>
-  <%= radio_button_tag(:filter, "Bk") %>
-  <%= label_tag(:filter, "Brooklyn") %>
-  <%= radio_button_tag(:filter, "Q") %>
-  <%= label_tag(:filter, "Queens") %>
-  <%= radio_button_tag(:filter, "Bx") %>
-  <%= label_tag(:filter, "Bronx") %>
-  <%= radio_button_tag(:filter, "SI") %>
-  <%= label_tag(:filter, "Staten Island") %>
-  <%= submit_tag("Filter") %>
-<% end %>
-
-
-
+    <%= form_tag(subway_stops_path, method: :get) do %>
+      <%= radio_button_tag(:filter, nil) %>
+      <%= label_tag(:filter, "All") %>
+      <%= radio_button_tag(:filter, "M") %>
+      <%= label_tag(:filter, "Manhattan") %>
+      <%= radio_button_tag(:filter, "Bk") %>
+      <%= label_tag(:filter, "Brooklyn") %>
+      <%= radio_button_tag(:filter, "Q") %>
+      <%= label_tag(:filter, "Queens") %>
+      <%= radio_button_tag(:filter, "Bx") %>
+      <%= label_tag(:filter, "Bronx") %>
+      <%= radio_button_tag(:filter, "SI") %>
+      <%= label_tag(:filter, "Staten Island") %>
+      <%= submit_tag("Filter") %>
+    <% end %>
 <% end %>
 
 
@@ -56,6 +51,15 @@
       </div>
     </div>
   <% end %>
+</div>
+</div>
+<hr>
+
+<div class="container">
+<h2>Posts</h2>
+<% @posts.each do |post| %>
+  <%= render post %>
+<% end %>
 </div>
 
 

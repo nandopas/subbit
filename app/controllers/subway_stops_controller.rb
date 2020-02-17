@@ -28,6 +28,7 @@ class SubwayStopsController < ApplicationController
     #else
       #@subway_stops = SubwayStop.where(id: @@ids)
     #end
+    @posts = Post.order(created_at: :desc).limit(10)
 
 
   end
