@@ -8,4 +8,14 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, format: EMAIL_REGEX
   validates :username, presence: true, uniqueness: true, length: { in: 3..20 }
+
+  def self.score(user)
+  	score = 0
+  	user.posts.each do |post|
+  		score += post.cached_weighted_score
+  	end
+  	return score
+
+  end
+
 end

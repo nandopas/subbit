@@ -21,7 +21,7 @@ rails db:reset rails db:migrate rails db:seed
 
 * Also to provide location to users
 
-* Comments on posts
+* Comments on posts (done)
 
 * Messaging between users
 

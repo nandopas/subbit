@@ -22,6 +22,7 @@
 <% end %>
 
 <h1> <%= @user.username + "'s" %> posts </h1>
+<h4> Total Score: <%= User.score(@user) %> </h4> (Get more points with more upvotes on your posts!)
 <%= render @user.posts %>
 
 <% if current_user.id == @user.id %>
