@@ -13,12 +13,14 @@ class PostsController < ApplicationController
   end
 
   def create
+    @subway_stop = SubwayStop.find(params[:subway_stop_id])
     if current_user
       @subway_stop = SubwayStop.find(params[:subway_stop_id])
       @post = @subway_stop.posts.create(post_params)
       redirect_to subway_stop_path(@subway_stop)
     else
-      redirect_back(fallback_location: root_path)
+      #redirect_back(fallback_location: @subway_stop)
+      format.html { redirect_to @subway_stop, notice: 'Error with post, was it long enough?' }
     end
   end
 

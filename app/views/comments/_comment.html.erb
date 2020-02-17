@@ -1,53 +1,55 @@
 <div class="col-9">
   <div class="card">
-  	  <div class="card-body">
-
-  	<% if comment.user.username != nil %>
+      <div class="card-header">
+        <% if comment.user.username != nil %>
         Posted by: <%= link_to comment.user.username, user_path(comment.user.id) %> <%= time_ago_in_words(comment.created_at) %>
- ago      
-    <% else %>
-        [deleted] 
-    <% end %>
-    <br> 
-    <%= comment.comment %>
+        ago      
+        <% else %>
+          [deleted] 
+        <% end %>
+      </div>
 
-    <br>
+  	  <div class="card-body" style="background-color:white">
+        <h4><%= comment.comment %></h4>
+      </div>
 
-    <% if current_user %>
-      <%= link_to like_comment_path(comment), method: :put, class: "btn btn-success btn-sm", style:"color:white" do %>
-        Upvote
-        <%= comment.get_upvotes.size %>
-      <% end %>
-    <% else %>
-      Upvotes
-        <%= comment.get_upvotes.size %>
-    <% end %>
-    
-    
-    <% if current_user %>
-      <%= link_to dislike_comment_path(comment), method: :put, class: "btn btn-danger btn-sm", style:"color:white" do %>
-        Downvote
-        <%= comment.get_downvotes.size %>
-      <% end %>
-    <% else %>
-      Downvotes
-        <%= comment.get_downvotes.size %>
-    <% end %>
+      <div class="card-footer">
+        <% if current_user %>
+          <%= link_to like_comment_path(comment), method: :put, class: "btn btn-success btn-sm", style:"color:white" do %>
+            Upvote
+            <%= comment.get_upvotes.size %>
+          <% end %>
+        <% else %>
+          Upvotes
+            <%= comment.get_upvotes.size %>
+        <% end %>
+        
+        
+        <% if current_user %>
+          <%= link_to dislike_comment_path(comment), method: :put, class: "btn btn-danger btn-sm", style:"color:white" do %>
+            Downvote
+            <%= comment.get_downvotes.size %>
+          <% end %>
+        <% else %>
+          Downvotes
+            <%= comment.get_downvotes.size %>
+        <% end %>
 
-    <% if current_user && current_user.admin? %>
-      <br>
-      <%= link_to 'Destroy Comment', [comment],
-                   method: :delete,
-                   data: { confirm: 'Are you sure?' } %>
-    <% end %>
+        <% if current_user && current_user.admin? %>
+          <br>
+          <%= link_to 'Destroy Comment', [comment],
+                       method: :delete,
+                       data: { confirm: 'Are you sure?' } %>
+        <% end %>
 
-    <div class="float-right">
-    <% if current_user == comment.user %>
-    <%= link_to 'Delete Comment', [comment],
-                   method: :delete,
-                   data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style:"color:white"%>
-    <% end %>
-    </div>
+        <div class="float-right">
+          <% if current_user == comment.user %>
+          <%= link_to 'Delete Comment', [comment],
+                         method: :delete,
+                         data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style:"color:white"%>
+          <% end %>
+        </div>
+      </div>
+
   </div>
-</div>
 </div>

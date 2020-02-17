@@ -1,45 +1,50 @@
 <p id="notice"><%= notice %></p>
 
 <% if current_user && current_user.admin? %>
+	<h1> <%= @user.username + "'s" %> profile </h1>
+	<% if current_user.admin? %>
+	<p>
+	  <strong>Email:</strong>
+	  <%= @user.email %>
+	</p>
+	<% end %>
 
-<h1> <%= @user.username + "'s" %> profile </h1>
-<% if current_user.admin? %>
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+	<p>
+	  <strong>Username:</strong>
+	  <%= @user.username %>
+	</p>
+
+	<p>
+	  <strong>User since:</strong>
+	  <%= @user.created_at %>
+	</p>
 <% end %>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
 
-<p>
-  <strong>User since:</strong>
-  <%= @user.created_at %>
-</p>
-<% end %>
 
 <div class="container">
 	<div class="row">
 		<div class="col-4">
 			<h1> <%= @user.username + "'s" %> posts </h1>
+			<% if current_user %>
 			<% if current_user.id == @user.id %>
 				<div class="btn-group" role="group">
 				<%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary", style: "color:white" %>
 				<%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure? Account is not recoverable'}, class: "btn btn-secondary", style: "color:white" %>
 				</div>
 			<% end %>
+			<% end %>
 		</div>
 		<div class="col-4">
 		</div>
 		<div class="col-4">
-			<h4> Total Score: <%= User.score(@user) %> </h4> (Get more points with more upvotes on your posts!)
+			<h4> Total Score: <%= User.score(@user) %> </h4> (Get more points with more upvotes on your posts and comments!)
 		</div>
 	</div>
 	<br>
 </div>
 
-<%= render @user.posts %>
+<% @user.posts.reverse.each do |post| %>
+  <%= render post %>
+<% end %>
 

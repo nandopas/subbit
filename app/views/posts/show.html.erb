@@ -101,8 +101,9 @@
   <div class="container">
     <h3>Comments:</h3>
     <% @post.comments.reverse.each do |comment| %>
-      <%= render comment %>
+      <%= render comment %> <br>
     <% end %>
+
   </div>
 </div>
 

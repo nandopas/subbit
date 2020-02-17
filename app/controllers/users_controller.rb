@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  before_action :herd_user, except: [:index,:new, :create]
+  before_action :herd_user, except: [:index, :show, :new, :create]
   #before_action :not_admin, only: [:index]
   # GET /users
   # GET /users.json

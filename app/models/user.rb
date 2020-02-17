@@ -14,6 +14,10 @@ class User < ApplicationRecord
   	user.posts.each do |post|
   		score += post.cached_weighted_score
   	end
+
+    user.comments.each do |comment|
+      score += comment.cached_weighted_score
+    end
   	return score
 
   end
