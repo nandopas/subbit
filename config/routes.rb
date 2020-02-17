@@ -13,10 +13,11 @@ Rails.application.routes.draw do
 
   resources :subway_stops do
     resources :posts #do
-#      resources :comments
-#    end
+      #resources :comments
+    #end
   end
-
+  
+  resources :comments, only: [:create, :destroy]
   resources :posts do
     member do
       put "like", to: "posts#upvote"

@@ -3,7 +3,7 @@ class SubwayStop < ApplicationRecord
   validates_associated :posts
   accepts_nested_attributes_for :posts
   has_many :users, through: :posts
-  validates :line,:stop, presence: true,
+  validates :line, :stop, presence: true,
                     length: { minimum: 1 }
 
   #logic from https://medium.com/@yassimortensen/simple-search-form-in-rails-8483739e4042

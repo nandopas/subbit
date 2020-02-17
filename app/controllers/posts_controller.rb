@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   def show
     @subway_stop = SubwayStop.find(params[:subway_stop_id])
     @post = @subway_stop.posts.find(params[:id]) 
+    @comment = Comment.new
   end
 
   def create

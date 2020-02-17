@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   acts_as_votable
   belongs_to :subway_stop
   belongs_to :user
+  has_many :comments, dependent: :destroy
+  accepts_nested_attributes_for :comments
   validates :topic, presence: true,
                     length: { minimum: 1, maximum: 140 }
 

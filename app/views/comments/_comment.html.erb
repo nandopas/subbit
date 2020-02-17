@@ -1,0 +1,21 @@
+<div class="col-9">
+  <div class="card">
+  	  <div class="card-body">
+
+  	<% if comment.user.username != nil %>
+        Posted by: <%= link_to comment.user.username, user_path(comment.user.id) %> <%= time_ago_in_words(comment.created_at) %>
+ ago      
+    <% else %>
+        [deleted] 
+    <% end %>
+    <br> 
+    <%= comment.comment %>
+    <% if current_user && current_user.admin? %>
+      <br>
+      <%= link_to 'Destroy Comment', [comment],
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+</div>
+</div>

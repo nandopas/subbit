@@ -105,7 +105,7 @@
     
 
     <% if current_user %>
-      <%= link_to like_post_path(post), method: :put do %>
+      <%= link_to like_post_path(post), method: :put, id: "upvote", class: "btn btn-default" do %>
         Upvote
         <%= post.get_upvotes.size %>
       <% end %>
@@ -116,7 +116,7 @@
     
     
     <% if current_user %>
-      <%= link_to dislike_post_path(post), method: :put do %>
+      <%= link_to dislike_post_path(post), method: :put, id: "downvote", class: "btn btn-default" do %>
         Downvote
         <%= post.get_downvotes.size %>
       <% end %>
@@ -130,6 +130,10 @@
       <%= link_to 'Destroy Post', [post.subway_stop, post],
                    method: :delete,
                    data: { confirm: 'Are you sure?' } %>
+    <% end %>
+
+    <%= link_to [post.subway_stop, post], class: "btn btn-default" do %>
+    Comments: <%= post.comments.count %>
     <% end %>
   </div>
 </div>
