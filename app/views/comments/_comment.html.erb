@@ -10,12 +10,44 @@
     <% end %>
     <br> 
     <%= comment.comment %>
+
+    <br>
+
+    <% if current_user %>
+      <%= link_to like_comment_path(comment), method: :put, class: "btn btn-success btn-sm", style:"color:white" do %>
+        Upvote
+        <%= comment.get_upvotes.size %>
+      <% end %>
+    <% else %>
+      Upvotes
+        <%= comment.get_upvotes.size %>
+    <% end %>
+    
+    
+    <% if current_user %>
+      <%= link_to dislike_comment_path(comment), method: :put, class: "btn btn-danger btn-sm", style:"color:white" do %>
+        Downvote
+        <%= comment.get_downvotes.size %>
+      <% end %>
+    <% else %>
+      Downvotes
+        <%= comment.get_downvotes.size %>
+    <% end %>
+
     <% if current_user && current_user.admin? %>
       <br>
       <%= link_to 'Destroy Comment', [comment],
                    method: :delete,
                    data: { confirm: 'Are you sure?' } %>
     <% end %>
+
+    <div class="float-right">
+    <% if current_user == comment.user %>
+    <%= link_to 'Delete Comment', [comment],
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style:"color:white"%>
+    <% end %>
+    </div>
   </div>
 </div>
 </div>

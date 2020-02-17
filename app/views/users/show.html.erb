@@ -27,8 +27,8 @@
 			<h1> <%= @user.username + "'s" %> posts </h1>
 			<% if current_user.id == @user.id %>
 				<div class="btn-group" role="group">
-				<%= link_to 'Edit', edit_user_path(@user), class: "btn btn-default", style: "background-color:#cce6ff; color:white" %>
-				<%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure? Account is not recoverable'}, class: "btn btn-default", style: "background-color:#cce6ff; color:white" %>
+				<%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary", style: "color:white" %>
+				<%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure? Account is not recoverable'}, class: "btn btn-secondary", style: "color:white" %>
 				</div>
 			<% end %>
 		</div>

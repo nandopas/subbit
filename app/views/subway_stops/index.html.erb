@@ -46,8 +46,12 @@
   <% @subway_stops.each do |subway_stop| %>
     <div class="col-md-3">
       <div class="card h-100">
-        <h4><%= link_to subway_stop.stop, subway_stop %></h4>
-        <strong> Line: </strong><%= subway_stop.line %>
+        <div class="card-body">
+          <h4><%= link_to subway_stop.stop, subway_stop %></h4>
+        </div>
+        <div class="card-footer" style="background-color:white">
+          <strong> Line: </strong><%= subway_stop.line %>
+        </div>
       </div>
     </div>
   <% end %>
@@ -56,7 +60,7 @@
 <hr>
 
 <div class="container">
-<h2>Posts</h2>
+<h2>Recent Posts - All Stops</h2>
 <% @posts.each do |post| %>
   <%= render post %>
 <% end %>
@@ -81,7 +85,7 @@
       <td><%= subway_stop.line %></td>
       <td><%= subway_stop.stop %></td>
       <td><%= subway_stop.borough %></td>
-      <td><%= link_to 'Show', subway_stop, class: "btn btn-default", style: "background-color:#cce6ff; color:white"%></td>
+      <td><%= link_to 'Show', subway_stop, class: "btn btn-primary", style: "background-color:#cce6ff; color:white"%></td>
       <% if current_user && current_user.admin? %>
         <td><%= link_to 'Edit', edit_subway_stop_path(subway_stop) %></td>
         <td><%= link_to 'Destroy', subway_stop, method: :delete, data: { confirm: 'Are you sure?' } %></td>

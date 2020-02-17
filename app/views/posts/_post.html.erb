@@ -1,93 +1,20 @@
 <div class="container">
 
-<% if false %>
-<div class="posts">
-<p>
-  <strong>User:</strong>
-  <% if post.username != nil %>
-    <%= link_to post.username, user_path(post.user.id) %>
-  <% else %>
-    [deleted] 
-  <% end %>
-</p>
+  <div class="card" style:"padding:6px">
 
-<p>
-  <strong>Topic:</strong>
-  <%= post.topic %>
-</p>
+    <div class="card-header">
+      <% if post.user.username != nil %>
+        Posted by: <%= link_to post.user.username, user_path(post.user.id) %>       
+      <% else %>
+        [deleted] 
+      <% end %>
+      <%= time_ago_in_words(post.created_at) %>
+      ago at <%= link_to post.subway_stop.stop, [post.subway_stop, post] %>
+        <br> 
+    </div>
 
-<p>
-  <strong>Body:</strong>
-  <%= post.body %>
-</p>
+    <div class="card-body" style="background-color:white">
 
-<% if post.tags != nil %>
-<p>
-  <strong>Tags:</strong>
-  <%= post.tags %>
-</p>
-<% end %>
-
-<p>
-  <%= link_to 'Show this post', [post.subway_stop, post] %> 
-  <% if current_user && current_user.admin? %>|
-  <%= link_to 'Destroy Post', [post.subway_stop, post],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
-  <% end %>
-   
-  <br>
-   
-  <% if current_user %>
-    <%= link_to like_post_path(post), method: :put do %>
-      Upvote
-      <%= post.get_upvotes.size %>
-    <% end %>
-  <% else %>
-    Upvotes
-      <%= post.get_upvotes.size %>
-  <% end %>
-  
-  
-  <% if current_user %>
-    <%= link_to dislike_post_path(post), method: :put do %>
-      Downvote
-      <%= post.get_downvotes.size %>
-    <% end %>
-  <% else %>
-    Downvotes
-      <%= post.get_downvotes.size %>
-  <% end %>
-  
-  <br>
-
-<% if false %>
-  Vote total:
-  <%= post.score %>
-<% end %>
-
-</p>
-</div>
-<% end %>
-
-
-
-
-
-
-
-<div class="card" style:"padding:6px">
-  <div class="card-body">
-    
-
-    <% if post.user.username != nil %>
-      Posted by: <%= link_to post.user.username, user_path(post.user.id) %>       
-    <% else %>
-      [deleted] 
-    <% end %>
-    <%= time_ago_in_words(post.created_at) %>
-    ago at <%= link_to post.subway_stop.stop, [post.subway_stop, post] %>
-      <br> 
     <h3 class="card-title">
        
       <%= link_to post.topic, [post.subway_stop, post] %> 
@@ -135,8 +62,9 @@
     <%= link_to [post.subway_stop, post], class: "btn btn-secondary", style:"color:white" do %>
       Comments: <%= post.comments.count %>
     <% end %>
+    </div>
   </div>
-  </div>
+
 </div>
 
 </div>

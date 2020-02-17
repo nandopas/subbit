@@ -14,7 +14,31 @@ class CommentsController < ApplicationController
 	  	redirect_to root_path
 	  end 
 	end
-    
+  
+  def upvote
+    if current_user
+      #@subway_stop = SubwayStop.find(params[:subway_stop_id])
+      @comment = Comment.find(params[:id])
+      @comment.upvote_by current_user
+      redirect_back(fallback_location: root_path)
+      #redirect to the post itself
+      #redirect_to subway_stop_post_path(@post.subway_stop, @post)
+    else
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def downvote
+    if current_user
+      @comment = Comment.find(params[:id])
+      @comment.downvote_by current_user
+      redirect_back(fallback_location: root_path)
+      #redirect_to subway_stops_path
+    else
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
     def destroy
       @comment = Comment.find(params[:id])
       @post = Post.find(@comment.post_id)
