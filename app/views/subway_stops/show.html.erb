@@ -32,7 +32,7 @@
 	<h2> Top Posts All Time</h2>
 	<div class="row">
 	  <% Post.top_posts(@subway_stop).each do |post| %>
-	    <div class="col">
+	    <div class="col-6">
 		  <%= render post %>
 	    </div>
 	  <% end %>

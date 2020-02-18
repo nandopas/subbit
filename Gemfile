@@ -7,6 +7,9 @@ ruby '2.6.5'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 
+#little icons
+gem 'octicons_helper'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 # Use sqlite3 as the database for Active Record

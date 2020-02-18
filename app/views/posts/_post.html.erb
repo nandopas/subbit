@@ -4,68 +4,90 @@
 
     <div class="card-header">
       <% if post.user.username != nil %>
-        Posted by: <%= link_to post.user.username, user_path(post.user.id) %>       
+        <strong>Posted by:</strong> <%= link_to post.user.username, user_path(post.user.id) %>       
       <% else %>
         [deleted] 
       <% end %>
       <%= time_ago_in_words(post.created_at) %>
       ago at <%= link_to post.subway_stop.stop, [post.subway_stop] %>
-        <br> 
+
+      <div class="float-right">
+        <div class="btn" id="button-<%=post.id%>">
+          <%= octicon "three-bars" %>
+        </div>
+      </div>
     </div>
 
-    <div class="card-body" style="background-color:white">
+    <div id="post-<%=post.id%>" class="collapse show">
+      <div class="card-body" style="background-color:white">
+        <h3 class="card-title">
+          <%= link_to post.topic, [post.subway_stop, post] %> 
+        </h3>
 
-    <h3 class="card-title">
-       
-      <%= link_to post.topic, [post.subway_stop, post] %> 
-    </h3>
+
+        <% if false %>
+          <p class="card-text"><%= post.body %></p>
+        <% end %>
+      </div>
 
 
-    <% if false %>
-    <p class="card-text"><%= post.body %></p>
-    <% end %>
-    
+      <div class="card-footer">
+        <% if current_user %>
+          <%= link_to like_post_path(post), method: :put, class: "btn btn-success btn-sm", style:"color:white" do %>
+            Upvote
+            <%= post.get_upvotes.size %>
+          <% end %>
+        <% else %>
+          Upvotes
+            <%= post.get_upvotes.size %>
+        <% end %>
+      
+      
+        <% if current_user %>
+          <%= link_to dislike_post_path(post), method: :put, class: "btn btn-danger btn-sm", style:"color:white" do %>
+            Downvote
+            <%= post.get_downvotes.size %>
+          <% end %>
+        <% else %>
+          Downvotes
+            <%= post.get_downvotes.size %>
+        <% end %>
 
-    <% if current_user %>
-      <%= link_to like_post_path(post), method: :put, class: "btn btn-success", style:"color:white" do %>
-        Upvote
-        <%= post.get_upvotes.size %>
-      <% end %>
-    <% else %>
-      Upvotes
-        <%= post.get_upvotes.size %>
-    <% end %>
-    
-    
-    <% if current_user %>
-      <%= link_to dislike_post_path(post), method: :put, class: "btn btn-danger", style:"color:white" do %>
-        Downvote
-        <%= post.get_downvotes.size %>
-      <% end %>
-    <% else %>
-      Downvotes
-        <%= post.get_downvotes.size %>
-    <% end %>
+        <% if current_user && current_user.admin? %>
+          <br>
+          <%= link_to 'Destroy Post', [post.subway_stop, post],
+                       method: :delete,
+                       data: { confirm: 'Are you sure?' } %>
+        <% end %>
 
-    <% if current_user && current_user.admin? %>
-      <br>
-      <%= link_to 'Destroy Post', [post.subway_stop, post],
-                   method: :delete,
-                   data: { confirm: 'Are you sure?' } %>
-    <% end %>
-    <div class="float-right">
-    <% if current_user == post.user %>
-    <%= link_to 'Delete Post', [post.subway_stop, post],
-                   method: :delete,
-                   data: { confirm: 'Are you sure?' }, class:"btn btn-primary", style:"color:white"%>
-    <% end %>
-    <%= link_to [post.subway_stop, post], class: "btn btn-secondary", style:"color:white" do %>
-      Comments: <%= post.comments.count %>
-    <% end %>
+        <div class="float-right">
+        <% if current_user == post.user %>
+        <%= link_to 'Delete Post', [post.subway_stop, post],
+                       method: :delete,
+                       data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style:"color:white"%>
+        <% end %>
+        <%= link_to [post.subway_stop, post], class: "btn btn-secondary btn-sm", style:"color:white" do %>
+          Comments: <%= post.comments.count %>
+        <% end %>
+        </div>
+      </div>
     </div>
+
+
+
+
   </div>
-
-</div>
-
 </div>
 <br>
+
+
+<script>
+//collapse the comments cards based on their headers
+  $(document).ready(function() {
+      var post   = $("#post-<%=post.id%>");
+      var button    = $("#button-<%=post.id%>")
+      $(button).click(function(){
+        $(post).collapse('toggle');
+      });
+  });
+</script>

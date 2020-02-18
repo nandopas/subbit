@@ -1,55 +1,74 @@
 <div class="col-9">
   <div class="card">
-      <div class="card-header">
+      <div class="card-header" id="header-<%=comment.id %>">
         <% if comment.user.username != nil %>
-        Posted by: <%= link_to comment.user.username, user_path(comment.user.id) %> <%= time_ago_in_words(comment.created_at) %>
+        <strong>Comment by:</strong> <%= link_to comment.user.username, user_path(comment.user.id) %> <%= time_ago_in_words(comment.created_at) %>
         ago      
         <% else %>
           [deleted] 
         <% end %>
-      </div>
-
-  	  <div class="card-body" style="background-color:white">
-        <h4><%= comment.comment %></h4>
-      </div>
-
-      <div class="card-footer">
-        <% if current_user %>
-          <%= link_to like_comment_path(comment), method: :put, class: "btn btn-success btn-sm", style:"color:white" do %>
-            Upvote
-            <%= comment.get_upvotes.size %>
-          <% end %>
-        <% else %>
-          Upvotes
-            <%= comment.get_upvotes.size %>
-        <% end %>
-        
-        
-        <% if current_user %>
-          <%= link_to dislike_comment_path(comment), method: :put, class: "btn btn-danger btn-sm", style:"color:white" do %>
-            Downvote
-            <%= comment.get_downvotes.size %>
-          <% end %>
-        <% else %>
-          Downvotes
-            <%= comment.get_downvotes.size %>
-        <% end %>
-
-        <% if current_user && current_user.admin? %>
-          <br>
-          <%= link_to 'Destroy Comment', [comment],
-                       method: :delete,
-                       data: { confirm: 'Are you sure?' } %>
-        <% end %>
-
         <div class="float-right">
-          <% if current_user == comment.user %>
-          <%= link_to 'Delete Comment', [comment],
-                         method: :delete,
-                         data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style:"color:white"%>
+          <div class="btn" id="button-<%=comment.id%>">
+            <%= octicon "three-bars" %>
+          </div>
+        </div>
+      </div>
+
+      <div id="comment-<%=comment.id%>" class="collapse show">
+    	  <div class="card-body" style="background-color:white" id="body">
+          <h4><%= comment.comment %></h4>
+        </div>
+
+      
+        <div class="card-footer" id="footer">
+          <% if current_user %>
+            <%= link_to like_comment_path(comment), method: :put, class: "btn btn-success btn-sm", style:"color:white" do %>
+              Upvote
+              <%= comment.get_upvotes.size %>
+            <% end %>
+          <% else %>
+            Upvotes
+              <%= comment.get_upvotes.size %>
           <% end %>
+          
+          
+          <% if current_user %>
+            <%= link_to dislike_comment_path(comment), method: :put, class: "btn btn-danger btn-sm", style:"color:white" do %>
+              Downvote
+              <%= comment.get_downvotes.size %>
+            <% end %>
+          <% else %>
+            Downvotes
+              <%= comment.get_downvotes.size %>
+          <% end %>
+
+          <% if current_user && current_user.admin? %>
+            <br>
+            <%= link_to 'Destroy Comment', [comment],
+                         method: :delete,
+                         data: { confirm: 'Are you sure?' } %>
+          <% end %>
+
+          <div class="float-right">
+            <% if current_user == comment.user %>
+            <%= link_to 'Delete Comment', [comment],
+                           method: :delete,
+                           data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style:"color:white"%>
+            <% end %>
+          </div>
         </div>
       </div>
 
   </div>
 </div>
+
+<script>
+//collapse the comments cards based on their headers
+  $(document).ready(function() {
+      var comment   = $("#comment-<%=comment.id%>");
+      var button    = $("#button-<%=comment.id%>")
+      $(button).click(function(){
+        $(comment).collapse('toggle');
+      });
+  });
+</script>
