@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   
   def herd_user
   	if !(current_user)
-  	  redirect_to 'subway_stop'
+  	  redirect_to root_path
   	end
   end
 
