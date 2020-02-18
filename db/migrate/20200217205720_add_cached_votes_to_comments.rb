@@ -11,6 +11,6 @@ class AddCachedVotesToComments < ActiveRecord::Migration[6.0]
     end
 
     # Uncomment this line to force caching of existing votes
-    # Comment.find_each(&:update_cached_votes)
+    Comment.find_each(&:update_cached_votes)
   end
 end
