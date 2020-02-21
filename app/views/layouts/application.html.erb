@@ -12,16 +12,10 @@
 
     <style>
 
-      /*from google maps api example, not using anymore
-      #map {
-        width: 100%;
-        height: 400px;
-        background-color: grey;
-      }
-      */
       div.btn-group{
         z-index: 100;
       }
+
       #home-jumbo {
         /*background-color: #e6f5ff;*/
         background-image: url(/assets/subwaymap.jpg);
@@ -55,6 +49,7 @@
         border-radius:5px;
       }
       
+
       #upvote{
         background-color: #00cc00;
         color: white;
@@ -85,6 +80,10 @@
         background-color: #3399ff;
       }
 
+      li.nav-item {
+        border-radius:5px;
+      }
+
       nav
 
       .btn{
@@ -98,6 +97,9 @@
   </head>
 
   <body style="background-color:#f2f2f2">
+
+    <% count = Notification.count(current_user).to_s %>
+
     <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color:#cce6ff">
         <ul class="nav nav-pills mr-auto">  
           <li class="nav-item">
@@ -116,6 +118,9 @@
           <% if current_user %>
             <li class="nav-item">
               <%= link_to current_user.username + ' User Page', user_path(current_user), class: "nav-link" %>
+            </li>
+            <li class="nav-item" id="notifications" data-count="<%= count %>">
+              <%= link_to 'Notifications: ' + count, user_notifications_path(current_user), class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link_to 'Log Out', logout_path(current_user), class: "nav-link" %>
@@ -168,6 +173,21 @@
     </footer>
     <% end %>
 
-    
+  
+  <script>
+    $(document).ready(function() {
+      var notifications   = $("#notifications");
+      var count = notifications.data("count");
+      console.log("count: " + count);
+      
+      if (count > 0)
+      {
+        $(notifications).css("background-color", "#ff4d4d");
+        $(notifications).fadeOut(250).fadeIn(250).fadeOut(250).fadeIn(250).fadeOut(250).fadeIn(250);
+      
+      }
+      
+    });
+  </script>
   </body>
 </html>

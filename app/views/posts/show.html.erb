@@ -53,7 +53,7 @@
             <% if current_user == @post.user %>
             <%= link_to 'Delete Post', [@post.subway_stop, @post],
                            method: :delete,
-                           data: { confirm: 'Are you sure?' }, class:"btn btn-primary", style:"color:white"%>
+                           data: { confirm: 'Are you sure?' }, class: "btn btn-secondary", style:"color:white"%>
             <% end %>
           </div>
         </div>

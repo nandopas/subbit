@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
       @current_user = nil
     end
   end
+    
   
   def herd_user
   	if !(current_user)

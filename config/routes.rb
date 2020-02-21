@@ -2,9 +2,13 @@ Rails.application.routes.draw do
 
   get 'about/index'
   #resources :admins
+
   resources :users do
+    resources :notifications, only: [:index, :update]
     resources :posts
   end
+
+
   resources :sessions, only: [:new, :create, :destroy]
   #resources :votes
 

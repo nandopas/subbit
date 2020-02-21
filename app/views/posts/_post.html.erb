@@ -64,9 +64,9 @@
         <% if current_user == post.user %>
         <%= link_to 'Delete Post', [post.subway_stop, post],
                        method: :delete,
-                       data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style:"color:white"%>
+                       data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm", style:"color:white"%>
         <% end %>
-        <%= link_to [post.subway_stop, post], class: "btn btn-secondary btn-sm", style:"color:white" do %>
+        <%= link_to [post.subway_stop, post], class: "btn btn-primary btn-sm", style:"color:white" do %>
           Comments: <%= post.comments.count %>
         <% end %>
         </div>

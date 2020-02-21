@@ -8,6 +8,9 @@ class CommentsController < ApplicationController
 	  @comment = Comment.new(comment_params)
 	  @comment.user_id = current_user.id
 	  @post = Post.find(@comment.post_id)
+    if @post.user_id != current_user.id
+      @notification = Notification.create(user_id: @post.user_id, message: "#{@comment.user.username} commented '#{@comment.comment}' on your post: #{@post.topic}, ", reference_id: @post.id)
+    end
 	  if @comment.save
 	  	redirect_to subway_stop_post_path(@post.subway_stop_id,@comment.post_id)
 	  else

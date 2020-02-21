@@ -1,0 +1,35 @@
+<div class="container" style="background-color:white">
+
+	<h1> New Notifications </h1>
+    <hr>
+	<% if @unread.empty? %>
+	  <p> No new notifications :-( </p>
+  <% else %>
+    <% @unread.reverse.each do |notification| %>
+      <%= render notification %>
+    <% end %>
+  <% end %>
+
+
+
+    <hr>
+    <h2>All Notifications</h2>
+    <hr>
+    <% if @notifications.empty? %>
+      <p> No notifications! Start Posting! </p>
+    <% else %>
+      <% @notifications.reverse.each do |note| %>
+      	<div class="card bg-white" id="note">
+          <div class="card-body">
+          <% @post = Post.find(note.reference_id) %>
+	    	  <%= note.message %> <%= time_ago_in_words(note.created_at) %> ago
+          <div class="float-right">
+          <%= link_to 'Go To Post', subway_stop_post_path(@post.subway_stop,note.reference_id), class: 'btn btn-primary', style: "color:white" %>
+          </div>
+        </div>
+        </div>
+        <br>
+	  <% end %>
+    <% end %>
+</div>
+
