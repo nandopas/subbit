@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_003029) do
+ActiveRecord::Schema.define(version: 2020_03_14_152308) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
@@ -37,16 +37,6 @@ ActiveRecord::Schema.define(version: 2020_02_19_003029) do
     t.float "cached_weighted_average", default: 0.0
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "notifications", force: :cascade do |t|
-    t.string "message"
-    t.boolean "seen", default: false
-    t.integer "user_id", null: false
-    t.string "reference_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -109,7 +99,6 @@ ActiveRecord::Schema.define(version: 2020_02_19_003029) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "notifications", "users"
   add_foreign_key "posts", "subway_stops"
   add_foreign_key "posts", "users"
 end

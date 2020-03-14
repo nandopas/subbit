@@ -98,7 +98,9 @@
 
   <body style="background-color:#f2f2f2">
 
+    <% if false %>
     <% count = Notification.count(current_user).to_s %>
+    <% end %>
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color:#cce6ff">
         <ul class="nav nav-pills mr-auto">  
@@ -119,9 +121,13 @@
             <li class="nav-item">
               <%= link_to current_user.username + ' User Page', user_path(current_user), class: "nav-link" %>
             </li>
+
+            <% if false %>
             <li class="nav-item" id="notifications" data-count="<%= count %>">
               <%= link_to 'Notifications: ' + count, user_notifications_path(current_user), class: "nav-link" %>
             </li>
+            <% end %>
+
             <li class="nav-item">
               <%= link_to 'Log Out', logout_path(current_user), class: "nav-link" %>
             </li>          
@@ -174,7 +180,9 @@
     <% end %>
 
   
+
   <script>
+    /*
     $(document).ready(function() {
       var notifications   = $("#notifications");
       var count = notifications.data("count");
@@ -188,6 +196,7 @@
       }
       
     });
+   */
   </script>
   </body>
 </html>
