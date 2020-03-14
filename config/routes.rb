@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   #resources :admins
 
   resources :users do
-    resources :notifications, only: [:index, :update]
+    #resources :notifications, only: [:index, :update]
     resources :posts
   end
 
