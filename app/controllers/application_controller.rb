@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   helper_method :current_user, :herd_user, :not_admin
 
   def current_user

@@ -1,0 +1,2 @@
+web: PORT=3000 yarn --cwd subbit-app start
+api: PORT=4000 bundle exec rails server

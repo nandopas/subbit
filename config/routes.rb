@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-
+  scope '/api/v1' do
+    resources :subway_stops
+  end
+  
+=begin
   get 'about/index'
   #resources :admins
 
@@ -42,5 +46,5 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-
+=end
 end

@@ -7,6 +7,7 @@ ruby '2.6.5'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 
+gem 'rack-cors', :require => 'rack/cors'
 #little icons
 gem 'octicons_helper'
 

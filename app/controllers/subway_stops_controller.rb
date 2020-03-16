@@ -29,6 +29,7 @@ class SubwayStopsController < ApplicationController
       #@subway_stops = SubwayStop.where(id: @@ids)
     #end
     @posts = Post.order(created_at: :desc).limit(10)
+    render json: @subway_stops
 
 
   end
