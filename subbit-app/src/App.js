@@ -15,7 +15,7 @@ class App extends React.Component {
             <h1> Hello this is the header </h1>
           </header>
           <Welcome name="Nando"/>
-          <StopBlock />
+          
         </div>
     );
   }

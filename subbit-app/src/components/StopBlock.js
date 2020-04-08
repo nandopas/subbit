@@ -11,27 +11,10 @@ class StopBlock extends React.Component {
 		}
 	}
 	
-	
-	render() {
-		return (
-			<div>
-				<ul>
-					{this.state.subway_stops.map((subway_stop) => {
-						return(
-							<li className="stop" subway_stop={subway_stop} key={subway_stop.id}>
-								{subway_stop.id}
-							</li>
-						)
-					})}
-				</ul>
-			</div>
-		)
-	}
-
 	getSubwayStops() {
 		axios.get('api/v1/subway_stops')
 		.then(response => {
-			this.setState( {todos: response.data} )
+			this.setState( {subway_stops: response.data} )
 		})
 		.catch(error => console.log(error))
 	}
@@ -39,6 +22,31 @@ class StopBlock extends React.Component {
 	componentDidMount() {
 		this.getSubwayStops()
 	}
+
+	render() {
+		return (
+			<div>
+				<h1> hello there </h1>
+				<ul>
+					{this.state.subway_stops.map((subway_stop) => {
+						return(
+							<div className="container">
+							<div className="col sm-3">
+							<div className="card">
+							<li className="stop" subway_stop={subway_stop} key={subway_stop.id}>
+								{subway_stop.stop}
+							</li>
+							</div>
+							</div>
+							</div>
+						)
+					})}
+				</ul>
+			</div>
+		)
+	}
+
+	
 }
 
 export default StopBlock
