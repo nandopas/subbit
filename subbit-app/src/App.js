@@ -2,20 +2,22 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Welcome from './components/Welcome.js';
-import StopBlock from './components/StopBlock.js'
+import StopsBlock from './components/StopsBlock.jsx'
 
 class App extends React.Component {
   render () {
     return (
 
 
-      
+        <div>
         <div className="App">
           <header className="App-header">
-            <h1> Hello this is the header </h1>
+            <h1> Welcome to Subbit! </h1>
           </header>
-          <Welcome name="Nando"/>
-          
+        </div>
+        <div className="text-center" style={{backgroundColor: "#f0f8ff"}}>
+          <StopsBlock />
+        </div>
         </div>
     );
   }
