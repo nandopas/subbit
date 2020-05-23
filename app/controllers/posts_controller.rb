@@ -3,12 +3,14 @@ class PostsController < ApplicationController
   def index
     #@subway_stop = SubwayStop.find(params[:subway_stop_id])
     @posts = Post.all
+    render json: @posts
   end
   
   def show
     @subway_stops = SubwayStop.all
     @subway_stop = SubwayStop.find(params[:subway_stop_id])
-    @post = @subway_stop.posts.find(params[:id]) 
+    @post = @subway_stop.posts.find(params[:id])
+    render json: @post 
     @comment = Comment.new
   end
 

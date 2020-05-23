@@ -1,12 +1,15 @@
 class ApplicationController < ActionController::API
+  #skip_before_filter :verify_authenticity_token#, :raise => false
   helper_method :current_user, :herd_user, :not_admin
 
+
   def current_user
-    if session[:user_id]
-      @current_user ||= User.find(session[:user_id])
-    else
-      @current_user = nil
-    end
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    #if session[:user_id]
+      #@current_user ||= User.find(session[:user_id])
+    #else
+      #@current_user = nil
+    #end
   end
     
   

@@ -1,20 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+//import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Counter from './components/counter.jsx';
-import Counters from './components/counters.jsx';
-import StopBlock from './components/StopBlock.jsx'; 
-import StopsBlock from './components/StopsBlock.jsx';
-import Nav from './components/Nav.jsx';
 
-/*
-ReactDOM.render(<Nav />, document.getElementById('nav'));
-ReactDOM.render(<App />, document.getElementById('root'));
-*/
-//ReactDOM.render(<StopsBlock />, document.getElementById('stops'));
 
 
 ReactDOM.render(<App />, document.getElementById('root'));

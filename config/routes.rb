@@ -1,6 +1,24 @@
 Rails.application.routes.draw do
   scope '/api/v1' do
-    resources :subway_stops
+    resources :subway_stops do
+      resources :posts
+    end
+
+    resources :posts, only: :index
+
+    resources :users do
+      resources :posts
+    end
+    
+
+    #resources :sessions, only: [:new, :create, :destroy]
+
+    post '/login', to: 'sessions#create'
+    delete '/logout', to: 'sessions#destroy'
+    get '/logged_in', to: 'sessions#is_logged_in?'
+
+    #get 'login', to: 'sessions#new', as: 'login'
+    #get 'logout', to: 'sessions#destroy', as: 'logout'
   end
   
 =begin

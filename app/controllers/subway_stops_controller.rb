@@ -36,6 +36,7 @@ class SubwayStopsController < ApplicationController
   
   def show
     @subway_stop = SubwayStop.find(params[:id])
+    render json: @subway_stop
 =begin
     #redirect if user tries to manipulate url id
     #ids = ['309', '168', '18']

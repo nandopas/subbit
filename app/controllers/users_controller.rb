@@ -5,16 +5,29 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @users = User.all
+    render json: @users.as_json(except: [:email])
+=begin
     if current_user 
       @users = User.all
     else
       redirect_back fallback_location: root_path
     end
+=end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
+    if @user
+      render json: @user
+    else
+      render json: {
+        status: 500,
+        errors: ['user not found']
+      }
+    end
     #if current_user == User.find(params[:id])
       #@user = User.find(params[:id])
     #else
@@ -44,7 +57,20 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    if @user.save
+      session[:user_id] = nil
+      session[:user_id] = @user.id
+      render json: {
+        status: :created,
+        user: @user
+      }
+    else
+      render json: {
+        status: 500,
+        errors: @user.errors.full_messages
+      }
+    end
+=begin
     respond_to do |format|
       if @user.save
         UserMailer.with(user: @user).welcome_email.deliver!
@@ -57,6 +83,7 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
 
   # PATCH/PUT /users/1
