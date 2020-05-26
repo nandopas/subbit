@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       puts session[:user_id]
       render json: {
         logged_in: true,
-        user: @user
+        user: @user.as_json(except: [:password_digest])
       }
       #redirect_to root_url, notice: "Logged in!"
     else
@@ -25,7 +25,6 @@ class SessionsController < ApplicationController
       #flash.now[:alert] = "Username or password is invalid"
       #render "new"
     end
-    puts session[:user_id]
 
   end
 
@@ -37,7 +36,7 @@ class SessionsController < ApplicationController
     if !!session[:user_id] && current_user
       render json: {
         logged_in: true,
-        user: current_user
+        user: current_user.as_json(except: [:password_digest])
       }
     else
       render json: {

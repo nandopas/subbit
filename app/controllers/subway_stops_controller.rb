@@ -1,11 +1,11 @@
 class SubwayStopsController < ApplicationController
   before_action :not_admin, only: [:edit, :update, :destroy]
-  #after_action :log_views, only: [:show]
-
-  #whitelist of stops
-  #@@ids = [1,2,3,4] 
 
   def index
+    @subway_stops = SubwayStop.all
+    render json: @subway_stops
+
+    # below is all old stuff im saving for later
 =begin
     if (params[:filter] == 'M')
       @subway_stops = SubwayStop.where(borough: 'M')
@@ -24,36 +24,21 @@ class SubwayStopsController < ApplicationController
 =end
     #whitelist of subway stops to show on index
     #if current_user && current_user.admin?
-      @subway_stops = SubwayStop.all
+      
     #else
       #@subway_stops = SubwayStop.where(id: @@ids)
     #end
     #@posts = Post.order(created_at: :desc).limit(10)
-    render json: @subway_stops
-
-
   end
   
   def show
     @subway_stop = SubwayStop.find(params[:id])
     @posts = @subway_stop.posts
     render json: @subway_stop.as_json(include: :posts)
-=begin
-    #redirect if user tries to manipulate url id
-    #ids = ['309', '168', '18']
-    #check if params in whitelist
-    if current_user && current_user.admin?
-      @subway_stop = SubwayStop.find(params[:id])
-    else
-      if !(@@ids.map(&:to_s).include? params[:id])
-        redirect_to subway_stops_path
-      else
-        @subway_stop = SubwayStop.find(params[:id])
-      end
-    end
-=end
   end
 
+  #old stuff saving for later
+=begin
   def new
     if current_user
       @subway_stop = SubwayStop.new
@@ -65,8 +50,6 @@ class SubwayStopsController < ApplicationController
   
   def edit
     @subway_stop = SubwayStop.find(params[:id])
-    
-
   end
  
   def create 
@@ -94,7 +77,7 @@ class SubwayStopsController < ApplicationController
 
     redirect_to subway_stops_path
   end
-
+=end
   private
     def subway_stop_params
       params.require(:subway_stop).permit(:line, :stop, :borough, :structure, :gtfs_latitude, :gtfs_longitude, :north_direction_label, :south_direction_label, :search, :filter)

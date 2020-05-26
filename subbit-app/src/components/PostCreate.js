@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 export class PostCreate extends Component {
 
@@ -9,9 +9,6 @@ export class PostCreate extends Component {
     }
 
     onChange = (event) => {
-        {console.log("change event")}
-        {console.log(event.target.name)}
-		{console.log(event.target.value)}
         const {name, value} = event.target
 	    this.setState({
 	      [name]: value
@@ -19,23 +16,9 @@ export class PostCreate extends Component {
     };
 
     onSubmit = (event) => {
-    	event.preventDefault()
-    	const { topic } = this.state
-
-    	let post = {
-    		topic: topic,
-            body: null,
-            subway_stop_id: this.props.subway_stop_id, //do this!!!!!!!!!!!!!
-            tags: null,
-            score: null
-    	}
-        
-    	axios.post('api/v1/posts', {post}, {withCredentials: true})
-    	.then(response => {
-            console.log(response)
-            this.setState({ topic: '' })
-    	})
-    	.catch(error => console.log('api errors:', error))
+        event.preventDefault()
+        this.props.addPost(this.state.topic)
+        this.setState({ topic: '' })
     };
     
     render() {
@@ -51,19 +34,18 @@ export class PostCreate extends Component {
                     value={this.state.topic}
                     onChange={this.onChange}
                     />
-
+                    {/* using this to display characters left */}
                     {
                         this.state.topic.length < 140 ?
                         140 - this.state.topic.length :
                         0
                     }/140 <br />
-
+                    
+                    {/* warning displayed if input text is too long */}
                     {
                         this.state.topic.length > 140 ? <p>Post is too long!</p> : null
                     }
-                        
-                    
-                  
+                                          
                     <button 
                     type="submit"
                     className="btn btn-block"
@@ -77,6 +59,12 @@ export class PostCreate extends Component {
             </div>
         )
     }
+}
+
+// PropTypes
+PostCreate.propTypes = {
+    // need the subway stop id
+    subway_stop_id: PropTypes.string.isRequired
 }
 
 export default PostCreate

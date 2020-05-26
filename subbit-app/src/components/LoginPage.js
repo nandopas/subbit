@@ -3,38 +3,39 @@ import axios from 'axios';
 
 export class LoginPage extends Component {
 
+    // state here keeps track of changes to form
     state = {
         username: '',
         password: '',
         errors: ''
     }
 
+    // changes form state
     onChange = (event) => {
-        {console.log("change event")}
-        {console.log(event.target.name)}
-		{console.log(event.target.value)}
 	    const {name, value} = event.target
 	    this.setState({
 	      [name]: value
 	    })
     };
       
+    // submits to db
     onSubmit = (event) => {
     	event.preventDefault()
     	const {username, password} = this.state
 
+        // create new user object with below specs
     	let user = {
     		username: username,
     		password: password
     	}
-
-        {console.log("handleSubmit user:",user.username)}
-        {console.log("handleSubmit pass:",user.password)}
         
+        // post to api
     	axios.post('api/v1/login', {user}, {withCredentials: true})
     	.then(response => {
     		if (response.data.logged_in) {
-    			this.props.handleLogin(response.data)
+                // perform log in at app.js
+                this.props.handleLogin(response.data)
+                // redirect to home page
     			this.redirect()
     		} else {
     			this.setState({
@@ -45,10 +46,12 @@ export class LoginPage extends Component {
     	.catch(error => console.log('api errors:', error))
     };
 
+    // allows redirect to home page
     redirect = () => {
         this.props.history.push('/')
     }
 
+    // returns the errors if any
     handleErrors = () => {
         return(
             <div>
@@ -88,16 +91,12 @@ export class LoginPage extends Component {
                         onChange={this.onChange}
                         />
                     
-
                         <button 
                         type="submit"
                         className="btn btn-block my-4"
                         placeholder="submit" style={{ backgroundColor: "#52b788", color: "white" }}>
                             Submit
                         </button>
-                        
-                        
-                    
                     </form>
                     <div>
                         {

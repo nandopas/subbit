@@ -76,6 +76,22 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      puts "deleted post"
+      render json: {
+        status: 200
+      }
+    else
+      puts "ruh roh not deleted"
+      render json: {
+        status: 500,
+        errors: @post.errors.full_messages
+      }
+    end
+  end
+
   private
     def post_params
       params.require(:post).permit(:topic, :body, :tags, :subway_stop_id).merge(user_id: current_user.id)

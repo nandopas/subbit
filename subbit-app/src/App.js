@@ -11,8 +11,13 @@ import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import SubwayStopPage from './components/SubwayStopPage';
+import UsersPage from './components/UsersPage'
 import UserPage from './components/UserPage';
 import SideBar from './components/SideBar';
+import CovidSideBar from './components/CovidSideBar';
+
+//import PostShowPage from './components/PostShowPage';
+import AboutPage from './components/AboutPage.js';
 
 export class App extends Component {
 
@@ -133,47 +138,75 @@ export class App extends Component {
                         <div className="col-lg-3 d-none d-lg-block">
                             <SideBar subway_stops={this.state.subway_stops} />
                         </div>
+
                         <div className="col-12 col-lg-6">
-    
-                        <Switch>
-                            <Route path="/login" render={(props) => (
-                                <LoginPage {...props} 
-                                handleLogin={this.handleLogin} 
-                                loggedInStatus={this.state.isLoggedIn} 
-                                /> 
-                            )} />
-                                
-                            <Route path="/signup" render={(props) => (
-                                <SignupPage {...props} 
-                                handleLogin={this.handleLogin} 
-                                loggedInStatus={this.state.isLoggedIn}
-                                />
-                            )} />
-                                
+                            <Switch>
+                                <Route path="/login" render={(props) => (
+                                    <LoginPage {...props} 
+                                    handleLogin={this.handleLogin} 
+                                    loggedInStatus={this.state.isLoggedIn} 
+                                    /> 
+                                )} />
+                                    
+                                <Route path="/signup" render={(props) => (
+                                    <SignupPage {...props} 
+                                    handleLogin={this.handleLogin} 
+                                    loggedInStatus={this.state.isLoggedIn}
+                                    />
+                                )} />
+                                    
 
-                            <Route path={"/subway_stop_page/:id"} render={(props) => (
-                                <SubwayStopPage {...props} 
-                                subway_stops={this.state.subway_stops} 
-                                users={this.state.users} 
-                                posts={this.state.posts} 
-                                current_user={this.state.current_user} 
-                                isLoggedIn={this.state.isLoggedIn} 
-                                />
-                            )} />
-                            
-                            <Route path={"/users/:id"} render={(props) => (
-                                <UserPage {...props} 
-                                users={this.state.users} 
-                                posts={this.state.posts} 
-                                />
-                            )} />
-                    
-                            <Route exact path="/">
-                                <HomePage posts={this.state.posts} users={this.state.users} />
-                            </Route>
-                        </Switch>
+                                <Route path={"/subway_stop_page/:id"} render={(props) => (
+                                    <SubwayStopPage {...props} 
+                                    subway_stops={this.state.subway_stops} 
+                                    users={this.state.users} 
+                                    posts={this.state.posts} 
+                                    current_user={this.state.current_user} 
+                                    isLoggedIn={this.state.isLoggedIn} 
+                                    />
+                                )} />
+                                
+                                <Route exact path={"/users"} render={(props) => (
+                                    <UsersPage {...props} 
+                                    users={this.state.users} 
+                                    />
+                                )} />
 
+                                <Route exact path={"/users/:id"} render={(props) => (
+                                    <UserPage {...props} 
+                                    users={this.state.users} 
+                                    posts={this.state.posts}
+                                    current_user={this.state.current_user} 
+                                    subway_stops={this.state.subway_stops}
+                                    />
+                                )} />
+                                
+                                {/*
+                                <Route path={"/posts/:id"} render={(props) => (
+                                    <PostShowPage {...props} />
+                                )} />
+                                */}
+
+                                <Route path={"/about"} render={(props) => (
+                                    <AboutPage />
+                                )}
+                                />
+
+                                <Route exact path="/">
+                                    <HomePage 
+                                        posts={this.state.posts} 
+                                        users={this.state.users} 
+                                        current_user={this.state.current_user}
+                                        subway_stops={this.state.subway_stops} 
+                                    />
+                                </Route>
+                            </Switch>
                         </div>
+
+                        <div className="col-lg-3 d-none d-lg-block">
+                            <CovidSideBar />
+                        </div>
+
                     </div>
                 </div>
                 

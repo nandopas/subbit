@@ -13,7 +13,7 @@ export class HomePage extends Component {
         this.getPosts();
     }
 
-    // request to get all posts and save to app state
+    // request to get all posts and save to home page state
     getPosts() {
         axios.get('api/v1/posts')
         .then(response => {
@@ -22,13 +22,30 @@ export class HomePage extends Component {
         .catch(error => console.log(error))
     }
 
+    delPost = (id) => {
+        axios.delete(`api/v1/posts/${id}`)
+        .then(response => {
+            console.log(response)
+            this.setState({ 
+                posts: [...this.state.posts.filter(post => post.id !== id)]
+            })
+        })
+        .catch(error => console.log('api errors:', error))
+    }
+
     render() {
     
 
         return (
             <div>
                 <h1>Most Recent Posts</h1>
-                <Posts posts={this.state.posts} users={this.props.users} />
+                <Posts 
+                    posts={this.state.posts} 
+                    users={this.props.users} 
+                    delete={this.delPost} 
+                    current_user={this.props.current_user}
+                    subway_stops={this.props.subway_stops}
+                />
             </div>
         )
     }

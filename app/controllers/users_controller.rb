@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
+=begin
   def edit
     if current_user == User.find(params[:id])
       @user = User.find(params[:id])
@@ -53,6 +54,7 @@ class UsersController < ApplicationController
       redirect_back fallback_location: root_path, alert: "Pls dont mess with the urls"
     end
   end
+=end
 
   # POST /users
   # POST /users.json
@@ -87,6 +89,7 @@ class UsersController < ApplicationController
 =end
   end
 
+=begin
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -111,7 +114,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+=end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

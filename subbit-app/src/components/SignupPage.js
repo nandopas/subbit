@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 export class SignupPage extends Component {
+
+    // this is all more or less the same as LoginPage.js
+    // look for comments there to understand inner workings
+    // could refactor these two at a later point
     state = {
         username: '',
         email: '',
@@ -11,9 +15,6 @@ export class SignupPage extends Component {
     }
 
     onChange = (event) => {
-        {console.log("change event")}
-        {console.log(event.target.name)}
-		{console.log(event.target.value)}
 	    const {name, value} = event.target
 	    this.setState({
 	      [name]: value
@@ -31,9 +32,6 @@ export class SignupPage extends Component {
 	    	password_confirmation: password_confirmation
 	    }
 
-        {console.log("handleSubmit user:",user.username)}
-        {console.log("handleSubmit pass:",user.password)}
-        
     	axios.post('api/v1/users', {user}, {withCredentials: true})
     	.then(response => {
     		if (response.data.status === 'created') {

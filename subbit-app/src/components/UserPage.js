@@ -10,7 +10,9 @@ export class UserPage extends Component {
 
     state = {
         user: {},
-        loading: true
+        posts: [],
+        loading: true,
+        errors: ''
     }
 
     componentDidMount() {
@@ -22,22 +24,54 @@ export class UserPage extends Component {
         const id = this.props.match.params.id;
         axios.get(`api/v1/users/${id}`)
 		.then(response => {
-            this.setState( {user: response.data} )
+            console.log(response.data.posts)
+            this.setState({ 
+                user: response.data,
+                posts: response.data.posts
+            })
             
 		})
-		.catch(error => console.log(error))
+		.catch(error => {
+            console.log(error)
+            // redirect to sign up if user not found
+            this.redirect();
+        })
     }
+
+    // deletes a post
+    delPost = (id) => {
+        axios.delete(`api/v1/posts/${id}`)
+        .then(response => {
+            console.log(response)
+            this.setState({ 
+                posts: [...this.state.posts.filter(post => post.id !== id)]
+            })
+        })
+        .catch(error => console.log('api errors:', error))
+    }
+
+    redirect = () => {
+        this.props.history.push('/signup')
+    }
+
 
 
     render() {
       
         return (
+           
             <div>
                 <h1>{this.state.user.username} posts</h1>
                 {
                     typeof this.state.user.posts === 'undefined' ? 
                     <Loader type="Oval" color="#00BFFF" /> : 
-                    <Posts posts={this.state.user.posts} users={this.props.users} />
+                    <Posts 
+                        posts={this.state.posts} 
+                        users={this.props.users} 
+                        current_user={this.props.current_user}
+                        subway_stops={this.props.subway_stops}
+                        delete={this.delPost}
+                    />
                 }
                 
             </div>

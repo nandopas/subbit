@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   scope '/api/v1' do
-    resources :subway_stops do
+
+    # subway stops have posts attached to them
+    # I only want index and show possible
+    # any created/edit is managed by database seeding
+    resources :subway_stops, only: [:index, :show] do
       resources :posts
     end
 
@@ -11,21 +15,19 @@ Rails.application.routes.draw do
       end
     end
 
+    # users have posts attached to them
     resources :users do
       resources :posts
     end
-    
 
-    #resources :sessions, only: [:new, :create, :destroy]
-
+    # sign in sign out sign up
     post '/login', to: 'sessions#create'
     delete '/logout', to: 'sessions#destroy'
     get '/logged_in', to: 'sessions#is_logged_in?'
 
-    #get 'login', to: 'sessions#new', as: 'login'
-    #get 'logout', to: 'sessions#destroy', as: 'logout'
   end
   
+  # below is a bunch of old routes from pre API days
 =begin
   get 'about/index'
   #resources :admins
