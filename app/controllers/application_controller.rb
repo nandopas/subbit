@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   #skip_before_filter :verify_authenticity_token#, :raise => false
-  helper_method :current_user, :herd_user, :not_admin, :fallback_index_html
+  helper_method :current_user, :herd_user, :not_admin
 
   def fallback_index_html
     render :file => 'public/index.html'

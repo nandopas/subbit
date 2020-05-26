@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'react#index'
+
   scope '/api/v1' do
 
     
