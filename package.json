@@ -14,9 +14,9 @@
     "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
-    "build": "cd subbit-app && npm install && yarn build && cd ..",
+    "build": "cd subbit-app && npm install && npm run build && cd ..",
     "deploy": "cp -a subbit-app/build/. public/",
-    "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
   },
   "engines": {
     "yarn": "1.22.4",
