@@ -4,7 +4,7 @@ import Posts from './Posts';
 import Loader from 'react-loader-spinner';
 
 // idk why but axios started requesting from the react url and not my proxy
-axios.defaults.baseURL = 'http://localhost:4000';
+// axios.defaults.baseURL = 'http://localhost:4000';
 
 export class UserPage extends Component {
 

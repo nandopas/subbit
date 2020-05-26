@@ -15,9 +15,9 @@ import UsersPage from './components/UsersPage'
 import UserPage from './components/UserPage';
 import SideBar from './components/SideBar';
 import CovidSideBar from './components/CovidSideBar';
-
-//import PostShowPage from './components/PostShowPage';
 import AboutPage from './components/AboutPage.js';
+
+axios.defaults.baseURL = 'http://localhost:4000';
 
 export class App extends Component {
 

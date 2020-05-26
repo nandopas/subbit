@@ -4,9 +4,7 @@ import Posts from './Posts';
 import PostCreate from './PostCreate';
 
 // idk why but axios started requesting from the react url and not my proxy
-axios.defaults.baseURL = 'http://localhost:4000';
-
-// const id = this.props.match.params.id;
+// axios.defaults.baseURL = 'http://localhost:4000';
 
 export class SubwayStopPage extends Component {
 
