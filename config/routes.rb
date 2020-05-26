@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  root 'home#index'
   scope '/api/v1' do
 
-    root 'home#index'
+    
     # subway stops have posts attached to them
     # I only want index and show possible
     # any created/edit is managed by database seeding
