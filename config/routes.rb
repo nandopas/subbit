@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'react#index'
   scope '/api/v1' do
 
     
@@ -27,6 +27,10 @@ Rails.application.routes.draw do
     delete '/logout', to: 'sessions#destroy'
     get '/logged_in', to: 'sessions#is_logged_in?'
 
+  end
+
+  get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+    !request.xhr? && request.format.html?
   end
   
   # below is a bunch of old routes from pre API days

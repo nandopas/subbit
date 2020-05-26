@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::API
   #skip_before_filter :verify_authenticity_token#, :raise => false
-  helper_method :current_user, :herd_user, :not_admin
+  helper_method :current_user, :herd_user, :not_admin, :fallback_index_html
 
+  def fallback_index_html
+    render :file => 'public/index.html'
+  end
 
   def current_user
     return unless session[:user_id]
