@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    render json: @users.as_json(except: [:email])
+    render json: @users.as_json(except: [:email, :password_digest])
 =begin
     if current_user 
       @users = User.all
@@ -20,8 +20,9 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.order(created_at: :desc)
     if @user
-      render json: @user
+      render json: @user.as_json(except: [:email, :password_digest], include: :posts)
     else
       render json: {
         status: 500,

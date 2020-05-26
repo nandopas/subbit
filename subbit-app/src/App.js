@@ -9,8 +9,10 @@ import {
 import NavbarPage from './components/NavbarPage.jsx';
 import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage';
 import SubwayStopPage from './components/SubwayStopPage';
 import UserPage from './components/UserPage';
+import SideBar from './components/SideBar';
 
 export class App extends Component {
 
@@ -19,8 +21,19 @@ export class App extends Component {
         users: [],
         subway_stops: [],
         posts: [],
-        current_user: {},
-        loading: true
+        current_user: {}
+        //loading: false
+    }
+
+    // ensures requests are completed for necessary info before displaying to page
+    // so components arent rendered without info
+    componentDidMount() {
+        this.getSubwayStops();
+        this.getPosts();
+        this.getUsers();
+        this.loginStatus();
+        //this.setState({ loading: false })
+        //this.loginStatus();
     }
 
     // request to get all subwaystops and save to app state
@@ -28,7 +41,6 @@ export class App extends Component {
 		axios.get('api/v1/subway_stops')
 		.then(response => {
             this.setState( {subway_stops: response.data} )
-            
 		})
 		.catch(error => console.log(error))
     }
@@ -91,23 +103,7 @@ export class App extends Component {
         .catch(error => console.log(error));
     }
 
-    // ensures requests are completed for necessary info before displaying to page
-    // so components arent rendered without info
-    componentDidMount() {
-        console.log("loading subwaystops");
-        this.getSubwayStops();
-        console.log("loading posts");
-        this.getPosts();
-        console.log("loading users");
-        this.getUsers();
-        console.log("setting to true");
-        this.setState({ loading: false })
-        //this.loginStatus();
-    }
-
-    componentWillMount() {
-
-    }
+    
 
     render() {
         if (this.state.loading) {
@@ -121,34 +117,66 @@ export class App extends Component {
         return (
             <Router>
             <div>
+                
                 <NavbarPage 
                     subway_stops={this.state.subway_stops} 
-                    logout={this.handleLogout} 
+                    logout={this.logout} 
                     isLoggedIn={this.state.isLoggedIn} 
                     current_user={this.state.current_user} 
                 />
-
+                
                 <div style={{paddingTop: "100px"}}></div>
 
                 <div className="container-fluid">
 
-                    <p>Logged in as { this.state.isLoggedIn ? this.state.current_user.username : "not logged in" }</p>
+                    <div className="row">
+                        <div className="col-lg-3 d-none d-lg-block">
+                            <SideBar subway_stops={this.state.subway_stops} />
+                        </div>
+                        <div className="col-12 col-lg-6">
+    
+                        <Switch>
+                            <Route path="/login" render={(props) => (
+                                <LoginPage {...props} 
+                                handleLogin={this.handleLogin} 
+                                loggedInStatus={this.state.isLoggedIn} 
+                                /> 
+                            )} />
+                                
+                            <Route path="/signup" render={(props) => (
+                                <SignupPage {...props} 
+                                handleLogin={this.handleLogin} 
+                                loggedInStatus={this.state.isLoggedIn}
+                                />
+                            )} />
+                                
 
-                    <Switch>
-                        <Route path="/login">
-                            <LoginPage handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} />
-                        </Route>
+                            <Route path={"/subway_stop_page/:id"} render={(props) => (
+                                <SubwayStopPage {...props} 
+                                subway_stops={this.state.subway_stops} 
+                                users={this.state.users} 
+                                posts={this.state.posts} 
+                                current_user={this.state.current_user} 
+                                isLoggedIn={this.state.isLoggedIn} 
+                                />
+                            )} />
+                            
+                            <Route path={"/users/:id"} render={(props) => (
+                                <UserPage {...props} 
+                                users={this.state.users} 
+                                posts={this.state.posts} 
+                                />
+                            )} />
+                    
+                            <Route exact path="/">
+                                <HomePage posts={this.state.posts} users={this.state.users} />
+                            </Route>
+                        </Switch>
 
-                        <Route path={"/subway_stop_page/:id"} component={SubwayStopPage} />
-                        
-                        <Route path={"/users/:id"} component={UserPage} />
-                
-
-                        <Route exact path="/">
-                            <HomePage posts={this.state.posts} users={this.state.users} />
-                        </Route>
-                    </Switch>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
             </Router>
         )

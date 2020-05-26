@@ -5,7 +5,86 @@ class PostsController < ApplicationController
     @posts = Post.all
     render json: @posts
   end
+
+  def show
+    @post = Post.find(params[:id])
+    render json: @post
+  end
   
+  def create
+    @post = Post.new(post_params)
+    if @post.save
+      render json: {
+        status: :created,
+        post: @post
+      }
+    else
+      render json: {
+        status: 500,
+        errors: @post.errors.full_messages
+      }
+    end
+  end
+
+  def upvote
+    puts current_user
+    if !!current_user 
+      @post = Post.find(params[:id])
+      if @post.upvote_by current_user
+        puts "up voted"
+        render json: {
+          status: 200,
+          post: @post
+        }
+      else
+        render json: {
+          status: 500,
+          errors: @post.errors.full_messages
+        }
+      end
+    else
+      puts "ruh roh"
+      render json: {
+        status: 401,
+        user: current_user
+      }
+    end
+  end
+  
+  def downvote
+    puts current_user
+    if !!current_user 
+      @post = Post.find(params[:id])
+      if @post.downvote_by current_user
+        puts "down voted"
+        render json: {
+          status: 200,
+          post: @post
+        }
+      else
+        render json: {
+          status: 500,
+          errors: @post.errors.full_messages
+        }
+      end
+    else
+      puts "ruh roh"
+      render json: {
+        status: 401,
+        user: current_user
+      }
+    end
+  end
+
+  private
+    def post_params
+      params.require(:post).permit(:topic, :body, :tags, :subway_stop_id).merge(user_id: current_user.id)
+    end
+end
+
+
+
+=begin
   def show
     @subway_stops = SubwayStop.all
     @subway_stop = SubwayStop.find(params[:subway_stop_id])
@@ -63,9 +142,5 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to subway_stop_path(@subway_stop)
   end
- 
-  private
-    def post_params
-      params.require(:post).permit(:topic, :body, :tags).merge(user_id: current_user.id)
-    end
-end
+=end
+  

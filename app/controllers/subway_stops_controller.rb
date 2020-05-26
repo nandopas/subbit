@@ -28,7 +28,7 @@ class SubwayStopsController < ApplicationController
     #else
       #@subway_stops = SubwayStop.where(id: @@ids)
     #end
-    @posts = Post.order(created_at: :desc).limit(10)
+    #@posts = Post.order(created_at: :desc).limit(10)
     render json: @subway_stops
 
 
@@ -36,7 +36,8 @@ class SubwayStopsController < ApplicationController
   
   def show
     @subway_stop = SubwayStop.find(params[:id])
-    render json: @subway_stop
+    @posts = @subway_stop.posts
+    render json: @subway_stop.as_json(include: :posts)
 =begin
     #redirect if user tries to manipulate url id
     #ids = ['309', '168', '18']

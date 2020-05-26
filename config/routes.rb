@@ -4,7 +4,12 @@ Rails.application.routes.draw do
       resources :posts
     end
 
-    resources :posts, only: :index
+    resources :posts do
+      member do
+        put "like", to: "posts#upvote"
+        put "dislike", to: "posts#downvote"
+      end
+    end
 
     resources :users do
       resources :posts

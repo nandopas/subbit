@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import axios from 'axios';
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,
-MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBContainer } from "mdbreact";
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse,
+MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from "mdbreact";
 // import { MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
-import { Route } from "react-router-dom";
-import SubwayStopPage from './SubwayStopPage';
+//import { Route } from "react-router-dom";
+//import SubwayStopPage from './SubwayStopPage';
 
-import { BrowserRouter as Router,
-         Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class NavbarPage extends Component {
 
@@ -39,10 +36,11 @@ class NavbarPage extends Component {
   }
 
 render() {
+  const bg = {backgroundColor: "#40916c"}
   return (
     
       <div>
-        <MDBNavbar scrolling fixed="top" color="blue" dark expand="md" >
+        <MDBNavbar scrolling fixed="top" style={bg} dark expand="md" >
 
           <Link to="/">
           <MDBNavbarBrand>
@@ -70,8 +68,7 @@ render() {
                   <MDBDropdownMenu right>
 
                     {this.props.subway_stops.map(subway_stop => ( 
-                      <MDBDropdownItem 
-                      key={subway_stop.id}><Link to={`/subway_stop_page/${subway_stop.id}`}>{subway_stop.stop}</Link></MDBDropdownItem>
+                      <Link to={`/subway_stop_page/${subway_stop.id}`}><MDBDropdownItem key={subway_stop.id}>{subway_stop.stop}</MDBDropdownItem></Link>
                     ))}
 
                   </MDBDropdownMenu>
@@ -86,7 +83,7 @@ render() {
               this.props.isLoggedIn ?
               <>
               <MDBNavItem>
-                <MDBNavLink to="/logout" onClick={this.props.logout}>Log Out!</MDBNavLink>
+                <MDBNavLink to="/" onClick={this.props.logout}>Log Out!</MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to={`/users/${this.props.current_user.id}`}>{this.props.current_user.username}</MDBNavLink>

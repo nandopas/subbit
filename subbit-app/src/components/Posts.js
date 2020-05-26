@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Post from './Post';
+import PropTypes from 'prop-types';
 
 export class Posts extends Component {
     
@@ -10,15 +11,11 @@ export class Posts extends Component {
         return post_user;
     };
 
- 
-    
 
-    render() {
-        
+    render() { 
 
         return (
             <div>
-                
                 {this.props.posts.map(post => {
                     let user = this.attachUserToPost(post);
                     if (typeof user === 'undefined') return <div>Loading</div>;
@@ -27,6 +24,12 @@ export class Posts extends Component {
             </div>
         )
     }
+}
+
+// PropTypes
+Posts.propTypes = {
+    posts: PropTypes.array.isRequired,
+    users: PropTypes.array.isRequired
 }
 
 export default Posts
