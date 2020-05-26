@@ -16,5 +16,5 @@ JavascriptTimeAgo.locale(en)
 
 
 
-ReactDOM.render(<Test />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
