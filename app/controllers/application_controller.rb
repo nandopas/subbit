@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   helper_method :current_user, :herd_user, :not_admin
 
   def fallback_index_html
-    render :file => 'public/index.html'
+    render :file => 'subbit-app/public/index.html'
   end
 
   def current_user
