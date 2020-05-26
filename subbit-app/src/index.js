@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import App from './App';
+import Test from './Test';
 import JavascriptTimeAgo from 'javascript-time-ago'
  
 // The desired locales.
@@ -15,5 +16,5 @@ JavascriptTimeAgo.locale(en)
 
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Test />, document.getElementById('root'));
 
