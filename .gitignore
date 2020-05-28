@@ -39,3 +39,6 @@ yarn-debug.log*
 
 # Ignore temporary readmes
 README2.md
+
+# ignore react dev builds
+/public

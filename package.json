@@ -24,3 +24,5 @@
     "node": "10.16.3"
   }
 }
+
+//https://stackoverflow.com/questions/47620936/deploy-app-to-heroku-with-separate-frontend-backend-servers
