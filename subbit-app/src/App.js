@@ -17,7 +17,7 @@ import SideBar from './components/SideBar';
 import CovidSideBar from './components/CovidSideBar';
 import AboutPage from './components/AboutPage.js';
 
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'https://subbit.net/';
 
 export class App extends Component {
 
