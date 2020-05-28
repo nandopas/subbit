@@ -1,33 +1,48 @@
 # Subbit
 ## Hosted as well at www.subbit.net
 
-to run locally, run server on port 4000
+### Subbit uses Ruby on Rails as a back end API and React for client side rendering
+
+
+To run React client on port 3000, install dependencies and start
+```
+cd subbit-app
+npm install && npm start
+```
+
+to run Rails api locally, run server on port 4000 
+(make sure you are not in the subbit-app directory, but rather the root directory)
 ```
 rails s -p 4000
 ```
 
 to create database locally (sqlite3):
-
 ```
 rails db:reset rails db:migrate rails db:seed
 ```
+
+The seed csv is located in lib/seeds. Stops.csv only includes 4 stops being used. 
+StopsFull.csv contains the rest of the stops in the city that have not been applied yet.
+If you want to try it with every subway stop, change db/seeds.rb line 15 from Stops.csv to StopsFull.csv
+
+#### I recently changed the rails backend to an api and added react, so some functionality is inactive right now
+I'll add post comments back in pretty soon and clean up the commented out backend code that's not being used anymore to make it more readable
+
 ## Next Steps
 
 * add more stops after a userbase is grown
 
 * show posts in order of most votes (done)
 
-* connect to a location API to include location at stops (done)
-
 * Also to provide location to users
 
-* Comments on posts (done)
+* Comments on posts (done. needs to be added to api version)
 
 * Messaging between users
 
-* Sort posts by tags
+* followers and following users
 
-* send a user sign up email (done)
+* send a user sign up email (done. needs to be added to api version)
 
 * search for a post
 
@@ -57,9 +72,4 @@ Any advice, bugs, or feedback? Let me know!
 
 This is still very much a work in progress, so would love to know features to add!
 
-### Future plans:
-* Comments on posts
-* Subway stop live chat feed
-* Direct messaging between users
-* Better maps integration and directions
 # Contact: nandopas2@gmail.com
